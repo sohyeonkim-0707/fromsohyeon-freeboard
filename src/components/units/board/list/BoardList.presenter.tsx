@@ -1,5 +1,5 @@
 import * as S from "./BoardList.styles";
-import { getDate } from '../../../../commons/libraries/utils'
+import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
 
 export default function BoardListUI(props: IBoardListUIProps) {
@@ -13,6 +13,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
       {props.data?.fetchBoards.map((el: any) => (
+        // key = 고유값 _id 지정
         <S.Row key={el._id}>
           <S.ColumnBasic>
             {String(el._id).slice(-4).toUpperCase()}
