@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
-// import { Rate } from "antd";
+import { Rate } from "antd";
+import { FormOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;
 `;
-
-// export const PencilIcon = styled.img``;
-// 아이콘 추가하기
 
 export const InputWrapper = styled.div`
   display: flex;
@@ -15,6 +13,10 @@ export const InputWrapper = styled.div`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 20px;
+`;
+
+export const MyIcon = styled(FormOutlined)`
+  margin-right: 10px;
 `;
 
 export const ContentsWrapper = styled.div`
@@ -59,5 +61,4 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-// export const Star = styled(Rate)``;
-// export const Star = styled()``;
+export const Star = styled(Rate)``;

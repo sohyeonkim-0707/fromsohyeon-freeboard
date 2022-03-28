@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
+import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 export const ItemWrapper = styled.div`
   width: 1200px;
@@ -31,32 +32,37 @@ export const WriterWrapper = styled.div`
 export const Writer = styled.div`
   font-size: 20px;
   font-weight: bold;
+  margin-right: 20px;
 `;
+
+// 별 위치 자유자재여
+export const Star = styled(Rate)`
+  margin-left: 20px;
+`;
+
 export const Contents = styled.div``;
 
 export const OptionWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export const UpdateIcon = styled.img`
-  width: 24px;
-  height: 24px;
+
+export const EditIcon = styled(EditOutlined)`
+  margin-right: 10px;
   cursor: pointer;
+  color: gray;
 `;
-export const DeleteIcon = styled.img`
-  width: 24px;
-  height: 24px;
+
+export const DeleteIcon = styled(CloseOutlined)`
+  margin-right: 10px;
   cursor: pointer;
+  color: gray;
 `;
 
 export const DateString = styled.div`
   color: lightgray;
   padding-top: 15px;
   padding-left: 60px;
-`;
-
-export const Star = styled(Rate)`
-  padding-left: 20px;
 `;
 
 export const PasswordInput = styled.input`

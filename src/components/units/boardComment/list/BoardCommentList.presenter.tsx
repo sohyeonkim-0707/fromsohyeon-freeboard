@@ -1,14 +1,35 @@
-import BoardCommentListUIItem from "./BoardCommentList.presenterItem";
+import { getDate } from "../../../../commons/libraries/utils";
+import * as S from "./BoardCommentList.styles";
 import { IBoardCommentListUIProps } from "./BoardCommentList.types";
-import InfiniteScroll from "react-infinite-scroller";
 
 export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
-  if (!props.data) return <div />;
+  // modal창 event
+  function aaa(event: MouseEvent<HTMLDivElement>) {
+    alert(event.currentTarget.id + "님의 글을 클릭했습니다!!! ");
+  }
   return (
-    <InfiniteScroll pageStart={0} loadMore={props.onLoadMore} hasMore={true}>
+    <div>
       {props.data?.fetchBoardComments.map((el) => (
-        <BoardCommentListUIItem key={el._id} el={el} />
+        <S.ItemWrapper key={el._id} id={String(el.writer)} onClick={aaa}>
+          <S.FlexWrapper>
+            <S.Avatar src="/images/avatar.png" />
+            <S.MainWrapper>
+              <S.WriterWrapper>
+                <S.Writer>{el.writer}</S.Writer>
+                <S.Star />
+              </S.WriterWrapper>
+              <S.Contents>{el.contents}</S.Contents>
+            </S.MainWrapper>
+            <S.OptionWrapper>
+              <S.EditIcon />
+              <S.DeleteIcon />
+              {/* <S.UpdateIcon src="/images/boardComment/list/option_update_icon.png/" /> */}
+              {/* <S.DeleteIcon src="/images/boardComment/list/option_delete_icon.png/" /> */}
+            </S.OptionWrapper>
+          </S.FlexWrapper>
+          <S.DateString>{getDate(el.createdAt)}</S.DateString>
+        </S.ItemWrapper>
       ))}
-    </InfiniteScroll>
+    </div>
   );
 }

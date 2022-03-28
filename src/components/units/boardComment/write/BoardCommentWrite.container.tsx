@@ -4,106 +4,59 @@ import { ChangeEvent, useState } from "react";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
-  IMutationUpdateBoardCommentArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
-import {
-  CREATE_BOARD_COMMENT,
-  UPDATE_BOARD_COMMENT,
-} from "./BoardCommentWrite.queries";
-import {
-  IBoardCommentWriteProps,
-  IUpdateBoardCommentInput,
-} from "./BoardCommentWrite.types";
+import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
+import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries";
 
-export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
+export default function BoardCommentWrite() {
   const router = useRouter();
-  const [myWriter, setMyWriter] = useState("");
-  const [myPassword, setMyPassword] = useState("");
-  const [myContents, setMyContents] = useState("");
-  // const [star, setStar] = useState(0);
+  const [writer, setWriter] = useState("");
+  const [password, setPassword] = useState("");
+  const [contents, setContents] = useState("");
 
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
-  const [updateBoardComment] = useMutation<
-    Pick<IMutation, "updateBoardComment">,
-    IMutationUpdateBoardCommentArgs
-  >(UPDATE_BOARD_COMMENT);
 
-  function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
-    setMyWriter(event.target.value);
+  function onChangeWriter(event: ChangeEvent<HTMLInputElement>) {
+    setWriter(event.target.value);
   }
 
-  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
-    setMyPassword(event.target.value);
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value);
   }
 
-  function onChangeMyContents(event: ChangeEvent<HTMLTextAreaElement>) {
-    setMyContents(event.target.value);
+  function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
+    setContents(event.target.value);
   }
-
-  // function onChangeStar(value: number) {
-  //   setStar(value);
-  // }
-
+  // 댓글 등록하기 버튼을 눌렀을 때 실행되는 함수
   async function onClickWrite() {
     try {
       await createBoardComment({
         variables: {
           createBoardCommentInput: {
-            writer: myWriter,
-            password: myPassword,
-            contents: myContents,
-            rating: star,
+            writer,
+            password,
+            contents,
+            rating: 3,
           },
           boardId: String(router.query.boardId),
         },
+        // 등록된 댓글 불러 오기
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: String(router.query.boardId) },
-          },
-        ],
-      });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  async function onClickUpdate() {
-    if (!myContents) {
-      alert("내용이 수정되지 않았습니다.");
-      return;
-    }
-    if (!myPassword) {
-      alert("비밀번호가 입력되지 않았습니다.");
-      return;
-    }
-
-    try {
-      // if (!props.el?._id) return;
-
-      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
-      if (myContents) updateBoardCommentInput.contents = myContents;
-      if (star !== props.el.rating) updateBoardCommentInput.rating = star;
-
-      await updateBoardComment({
-        variables: {
-          updateBoardCommentInput,
-          password: myPassword,
-          boardCommentId: props.el?._id,
-        },
-        refetchQueries: [
-          {
-            query: FETCH_BOARD_COMMENTS,
+            // 어떤 게시글에 댓글이 달려야하는지 필요하기에 댓글의 id가 필요
             variables: { boardId: router.query.boardId },
           },
         ],
       });
-      props.setIsEdit(false);
+      // 등록후 input칸 빈칸
+      setWriter("");
+      setPassword("");
+      setContents("");
     } catch (error) {
       alert(error.message);
     }
@@ -111,15 +64,13 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
 
   return (
     <BoardCommentWriteUI
-      onChangeMyWriter={onChangeMyWriter}
-      onChangeMyPassword={onChangeMyPassword}
-      onChangeMyContents={onChangeMyContents}
-      //onChangeStar={onChangeStar}
+      onChangeWriter={onChangeWriter}
+      onChangePassword={onChangePassword}
+      onChangeContents={onChangeContents}
       onClickWrite={onClickWrite}
-      onClickUpdate={onClickUpdate}
-      isEdit={props.isEdit}
-      el={props.el}
-      myContents={myContents}
+      writer={writer}
+      password={password}
+      contents={contents}
     />
   );
 }

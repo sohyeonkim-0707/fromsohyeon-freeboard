@@ -1,18 +1,19 @@
-import '../styles/globals.css'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import { AppProps } from 'next/app'
+import "antd/dist/antd.css";
+import "../styles/globals.css"; // 모든페이지에 전체적으로적용하고싶은css 나중에 emotion으로 바꿀거야
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     uri: "http://backend06.codebootcamp.co.kr/graphql",
-    cache: new InMemoryCache()
-  })
+    cache: new InMemoryCache(),
+  });
 
   return (
     <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

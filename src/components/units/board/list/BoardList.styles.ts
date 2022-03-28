@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { FormOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -22,7 +23,8 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 
   :hover {
-    color: blue;
+    /* color: blue; */
+    font-weight: bold;
   }
 `;
 
@@ -47,7 +49,8 @@ export const ColumnTitle = styled.div`
   cursor: pointer;
 
   :hover {
-    color: blue;
+    /* color: blue; */
+    font-weight: bold;
   }
 `;
 
@@ -58,11 +61,13 @@ export const Footer = styled.div`
   padding-top: 50px;
 `;
 
-export const PencilIcon = styled.img``;
+export const BoardNewIcon = styled(FormOutlined)`
+  margin-right: 10px;
+`;
 
 export const Button = styled.button`
   width: 171px;
-  height: 52px;
+  height: 45px;
   background-color: white;
   border-radius: 15px;
   display: flex;
@@ -72,6 +77,6 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: #f5f2fc;
+    background-color: lightgray;
   }
 `;
