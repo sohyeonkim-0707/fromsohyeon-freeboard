@@ -1,3 +1,5 @@
+// 게시글 등록하기 container
+
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
@@ -12,9 +14,10 @@ import {
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
+  // 버튼 노란색 활성화
   const [isActive, setIsActive] = useState(false);
 
-  // codegen-mutation
+  // codegen-mutationx
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -29,6 +32,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -92,6 +96,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  // 동영상 넣기, 조건 없음
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value);
+  };
+
   // onClick 사용자가 요소를 클릭할 때 발생
   const onClickSubmit = async () => {
     if (writer === "") {
@@ -112,10 +121,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer: writer,
-              password: password,
-              title: title,
-              contents: contents,
+              writer,
+              password,
+              title,
+              contents,
+              youtubeUrl,
             },
           },
         });
@@ -130,7 +140,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   // 수정시 변경된 값만 뮤테이션 날려주기
   const onClickUpdate = async () => {
-    if (!title && !contents) {
+    // 셋 중 하나는 수정을 해야지 수정 뮤테이션을 날린다.
+    if (!title && !contents && !youtubeUrl) {
       alert("수정한 내용이 없습니다.");
       return;
     }
@@ -146,6 +157,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     // 변경된 값만 넣어주기
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
     // 뮤테이션 날려주기
     try {
@@ -174,6 +186,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}

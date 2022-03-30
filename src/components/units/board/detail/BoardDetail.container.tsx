@@ -1,17 +1,36 @@
+// 게시글 상세보기 container
+
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@apollo/client";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import {
+  FETCH_BOARD,
+  DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
+} from "./BoardDetail.queries";
 import {
   IQuery,
   IQueryFetchBoardArgs,
   IMutation,
   IMutationDeleteBoardArgs,
+  IMutationLikeBoardArgs,
+  IMutationDislikeBoardArgs,
 } from "../../../../commons/types/generated/types";
 
 export default function BoardDetail() {
   const router = useRouter();
+  const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+  >(LIKE_BOARD);
 
+  const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
+
+  // 게시글 삭제하기
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs
@@ -48,12 +67,35 @@ export default function BoardDetail() {
     }
   };
 
+  // 좋아요 mutation 요청하기
+  const onClickLike = () => {
+    likeBoard({
+      variables: { boardId: String(router.query.boardId) },
+      // 다시 반영된 것 확인
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    });
+  };
+  // 싫어요 mutation 요청하기
+  const onClickDislike = () => {
+    dislikeBoard({
+      variables: { boardId: String(router.query.boardId) },
+      // 다시 반영된 것 확인
+      refetchQueries: [
+        { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
+      ],
+    });
+  };
+
   return (
     <BoardDetailUI
       data={data}
       onClickMoveToBoardList={onClickMoveToBoardList}
       onClickMoveToBoardEdit={onClickMoveToBoardEdit}
       onClickDelete={onClickDelete}
+      onClickLike={onClickLike}
+      onClickDislike={onClickDislike}
     />
   );
 }

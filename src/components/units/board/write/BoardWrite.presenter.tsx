@@ -1,3 +1,5 @@
+// 게시글 등록하기 UI
+
 import * as S from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 
@@ -57,7 +59,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
-        <S.Youtube placeholder="링크를 복사해주세요." />
+        <S.Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutubeUrl}
+          // defaultValue 있는 건 수정하기엔 우선 url 적혀있음
+          // 뒤에 빈문자열은  defaultValue의 stringType이 | | ”” 문자열이 없으면 빨간 줄이이 생기고(undefined) 있으면 빨간 줄 안겨서 빈문자열을 넣어줌 / 타입 문제 없게끔
+          // defaulValue 유툽 유알엘 받으려면 수정하기 페이지에서 내려줘야함
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+        />
       </S.InputWrapper>
       <S.ImageWrapper>
         <S.Label>사진첨부</S.Label>
@@ -73,7 +82,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
       </S.OptionWrapper>
       <S.ButtonWrapper>
-        <S.SubmitButton 
+        <S.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
           isActive={props.isEdit ? true : props.isActive}
         >

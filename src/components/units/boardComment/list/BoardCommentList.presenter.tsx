@@ -16,15 +16,14 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
             <S.MainWrapper>
               <S.WriterWrapper>
                 <S.Writer>{el.writer}</S.Writer>
-                <S.Star />
+                {/* 별 disabled 선택 안되게끔 */}
+                <S.Star value={el?.rating} disabled />
               </S.WriterWrapper>
               <S.Contents>{el.contents}</S.Contents>
             </S.MainWrapper>
             <S.OptionWrapper>
               <S.EditIcon />
               <S.DeleteIcon />
-              {/* <S.UpdateIcon src="/images/boardComment/list/option_update_icon.png/" /> */}
-              {/* <S.DeleteIcon src="/images/boardComment/list/option_delete_icon.png/" /> */}
             </S.OptionWrapper>
           </S.FlexWrapper>
           <S.DateString>{getDate(el.createdAt)}</S.DateString>

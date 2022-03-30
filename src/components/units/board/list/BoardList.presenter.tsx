@@ -1,3 +1,5 @@
+// 게시글 목록 UI
+
 import * as S from "./BoardList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";

@@ -1,6 +1,5 @@
 import * as S from "./BoardCommentWrite.styles";
 import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
-import { Rate } from "antd";
 
 export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
   return (
@@ -22,7 +21,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           onChange={props.onChangePassword}
           value={props.password}
         />
-        <Rate />
+        <S.Star onChange={props.onChangeStar} />
       </S.InputWrapper>
       <S.ContentsWrapper>
         <S.Contents

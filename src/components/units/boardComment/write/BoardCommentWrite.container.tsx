@@ -1,3 +1,5 @@
+// 댓글 등록하기 container
+
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
@@ -14,6 +16,8 @@ export default function BoardCommentWrite() {
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
+  // 별 초기값 0
+  const [star, setStar] = useState(0);
 
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
@@ -31,6 +35,11 @@ export default function BoardCommentWrite() {
   function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
   }
+  // 별 왜 value 가 들어오냐? 이 온체인지는 html 인풋테그의 그런 온체인지가 아님. antd 디자이너가 만든 기능일 뿐 클릭하면 위 value 라는 값이 들어옴
+  function onChangeStar(value: number) {
+    setStar(value);
+  }
+
   // 댓글 등록하기 버튼을 눌렀을 때 실행되는 함수
   async function onClickWrite() {
     try {
@@ -40,7 +49,7 @@ export default function BoardCommentWrite() {
             writer,
             password,
             contents,
-            rating: 3,
+            rating: star,
           },
           boardId: String(router.query.boardId),
         },
@@ -68,6 +77,7 @@ export default function BoardCommentWrite() {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickWrite={onClickWrite}
+      onChangeStar={onChangeStar}
       writer={writer}
       password={password}
       contents={contents}
