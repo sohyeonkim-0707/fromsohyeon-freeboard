@@ -16,7 +16,7 @@ export interface IBoardCommentWriteUIProps {
   onClickUpdate: () => void;
   isEdit?: boolean;
   el?: IBoardComment;
-  myContents: string;
+  contents: string;
 }
 
 export interface IUpdateBoardCommentInput {

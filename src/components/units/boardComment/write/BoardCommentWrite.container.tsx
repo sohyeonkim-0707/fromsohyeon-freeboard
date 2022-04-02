@@ -111,7 +111,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.aaa },
+            variables: { boardId: router.query.boardId },
           },
         ],
       });
@@ -128,8 +128,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
       onChangeStar={onChangeStar}
       onClickWrite={onClickWrite}
       onClickUpdate={onClickUpdate}
-      // writer={writer}
-      // password={password}
       isEdit={props.isEdit}
       el={props.el}
       contents={contents}
