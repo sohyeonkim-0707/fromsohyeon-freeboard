@@ -3,6 +3,7 @@
 import * as S from "./BoardList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
+import PagiNations01 from "../../../commons/paginations/01/Paginations01.container";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -14,26 +15,32 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
+
       {props.data?.fetchBoards.map((el: any) => (
         // key = 고유값 _id 지정
         <S.Row key={el._id}>
           <S.ColumnBasic>
             {String(el._id).slice(-4).toUpperCase()}
           </S.ColumnBasic>
-          {/* <input type="text" id="bbb" onClick={props.onClickMoveToBoardDetail}/> */}
+
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
             {el.title}
           </S.ColumnTitle>
+
           <S.ColumnBasic>{el.writer}</S.ColumnBasic>
+
           <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
         </S.Row>
       ))}
       <S.TableBottom />
+
       <S.Footer>
         <S.Button onClick={props.onClickMoveToBoardNew}>
           <S.BoardNewIcon />
           게시물 등록하기
         </S.Button>
+        {/* 페이지네이션 */}
+        <PagiNations01 refetch={props.refetch} count={props.count} />
       </S.Footer>
     </S.Wrapper>
   );

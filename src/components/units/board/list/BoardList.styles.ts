@@ -49,7 +49,6 @@ export const ColumnTitle = styled.div`
   cursor: pointer;
 
   :hover {
-    /* color: blue; */
     font-weight: bold;
   }
 `;
@@ -58,7 +57,8 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 50px;
+  align-items: center;
+  padding-top: 30px;
 `;
 
 export const BoardNewIcon = styled(FormOutlined)`

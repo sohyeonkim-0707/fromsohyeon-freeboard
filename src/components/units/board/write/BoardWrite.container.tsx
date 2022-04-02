@@ -1,5 +1,4 @@
 // 게시글 등록하기 container
-
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
@@ -11,13 +10,14 @@ import {
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  // 버튼 노란색 활성화
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false); // 버튼 노란색 활성화
+  const [isOpen, setIsOpen] = useState(false);
 
-  // codegen-mutationx
+  // codegen-mutation
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -33,6 +33,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -96,9 +99,23 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  // 동영상 넣기, 조건 없음
+  // 동영상 넣는 것은 자유니까 조건없음
   const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
     setYoutubeUrl(event.target.value);
+  };
+
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
+
+  const onClickAddressSearch = () => {
+    setIsOpen(true);
+  };
+
+  const onCompleteAddressSearch = (data: any) => {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsOpen(false);
   };
 
   // onClick 사용자가 요소를 클릭할 때 발생
@@ -126,14 +143,20 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
         console.log(result);
-        alert("게시물 등록에 성공하였습니다!");
+        Modal.success({ content: "게시물 등록에 성공하였습니다!" });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
+        Modal.error({ content: error.message });
       }
     }
   };
@@ -141,24 +164,38 @@ export default function BoardWrite(props: IBoardWriteProps) {
   // 수정시 변경된 값만 뮤테이션 날려주기
   const onClickUpdate = async () => {
     // 셋 중 하나는 수정을 해야지 수정 뮤테이션을 날린다.
-    if (!title && !contents && !youtubeUrl) {
-      alert("수정한 내용이 없습니다.");
+    if (
+      !title && // 타이틀이 공백이라면 ...
+      !contents &&
+      !youtubeUrl &&
+      !address &&
+      !addressDetail &&
+      !zipcode
+    ) {
+      // alert("수정한 내용이 없습니다.");
+      Modal.success({ content: "수정한 내용이 없습니다." });
       return;
     }
 
     if (!password) {
-      alert("비밀번호를 입력해주세요.");
+      // alert("비밀번호를 입력해주세요.");
+      Modal.success({ content: "비밀번호를 입력해주세요." });
       return;
     }
 
     // 변경된 값만 넣어주기 위한 빈객체 {}
     const updateBoardInput: IUpdateBoardInput = {};
-
     // 변경된 값만 넣어주기
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
-
+    if (zipcode || address || addressDetail) {
+      updateBoardInput.boardAddress = {};
+      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+      if (address) updateBoardInput.boardAddress.address = address;
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
     // 뮤테이션 날려주기
     try {
       await updateBoard({
@@ -168,10 +205,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
           updateBoardInput,
         },
       });
-      alert("게시물 수정에 성공하였습니다!");
+      Modal.success({ content: "게시물 수정에 성공하였습니다!" });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 
@@ -187,10 +224,17 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onChangeAddressDetail={onChangeAddressDetail}
+      onClickAddressSearch={onClickAddressSearch}
+      onCompleteAddressSearch={onCompleteAddressSearch}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
+      isOpen={isOpen}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
     />
   );
 }

@@ -17,6 +17,7 @@ import {
   IMutationLikeBoardArgs,
   IMutationDislikeBoardArgs,
 } from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function BoardDetail() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function BoardDetail() {
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {
-      variables: { boardId: router.query.boardId },
+      variables: { boardId: String(router.query.boardId) },
     }
   );
 
@@ -60,7 +61,8 @@ export default function BoardDetail() {
       await deleteBoard({
         variables: { boardId: router.query.boardId },
       });
-      alert("삭제가 완료되었습니다.");
+      // alert("삭제가 완료되었습니다.");
+      Modal.success({ content: "삭제가 완료되었습니다." });
       router.push("/boards");
     } catch (error) {
       alert(error.message);

@@ -2,20 +2,27 @@
 
 import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS } from "./BoardList.queries";
+import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
 import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import {
   IQuery,
-  IQueryFetchBoardArgs,
+  IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
 
 export default function BoardList() {
   const router = useRouter();
-  // codegen-query
-  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
-    FETCH_BOARDS
-  );
+
+  // 페이지 네이션 컴포넌트로 refetch랑 count 넘겨주는 중
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS);
+  const { data: dataBoardsCount } = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT);
 
   const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
@@ -26,7 +33,6 @@ export default function BoardList() {
     // event.target.value
     // event.target.id
 
-    // document.getElementById("bbb").value
     if (event.target instanceof Element)
       router.push(`/boards/${event.target.id}`);
   };
@@ -36,6 +42,8 @@ export default function BoardList() {
       data={data}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+      refetch={refetch}
+      count={dataBoardsCount?.fetchBoardsCount}
     />
   );
 }
