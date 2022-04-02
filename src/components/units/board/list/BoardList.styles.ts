@@ -58,7 +58,7 @@ export const Footer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 20px;
 `;
 
 export const BoardNewIcon = styled(FormOutlined)`

@@ -21,17 +21,18 @@ import { Modal } from "antd";
 
 export default function BoardDetail() {
   const router = useRouter();
+  // 좋아요
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,
     IMutationLikeBoardArgs
   >(LIKE_BOARD);
-
+  // 싫어요
   const [dislikeBoard] = useMutation<
     Pick<IMutation, "dislikeBoard">,
     IMutationDislikeBoardArgs
   >(DISLIKE_BOARD);
 
-  // 게시글 삭제하기
+  // 게시글 삭제
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs

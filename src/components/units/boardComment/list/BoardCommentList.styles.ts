@@ -69,3 +69,8 @@ export const PasswordInput = styled.input`
   width: 100%;
   margin-top: 10px;
 `;
+
+export const Scroll = styled.div`
+  height: 500px;
+  overflow: auto;
+`;

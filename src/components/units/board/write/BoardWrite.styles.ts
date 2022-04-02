@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ISubmitButtonProps } from "./BoardWrite.types";
 
-//높이 지정 하지마
+// 높이 지정 하지마
 export const Wrapper = styled.div`
   width: 1200px;
   /* height: 1847px; */

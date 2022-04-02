@@ -3,7 +3,7 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
-// import { Tooltip } from "antd"; 에러남
+// import { Tooltip } from "antd"; 에러
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (

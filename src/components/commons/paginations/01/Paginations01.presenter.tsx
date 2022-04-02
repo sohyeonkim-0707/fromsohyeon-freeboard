@@ -5,9 +5,9 @@ export default function Paginations01UI(props: IPaginations01UIProps) {
   return (
     <div>
       {/* 이전페이지 */}
-      <Page onClick={props.onClickPrevPage}>{`<`}</Page>
+      <Page onClick={props.onClickPrevPage}>&lt;</Page>
 
-      {/* 페이지배열 */}
+      {/* 페이지 네비게이션 */}
       {new Array(10).fill(1).map(
         (_, index) =>
           props.startPage + index <= props.lastPage && (
@@ -22,7 +22,7 @@ export default function Paginations01UI(props: IPaginations01UIProps) {
           )
       )}
       {/* 다음페이지 */}
-      <Page onClick={props.onClickNextPage}>{`>`}</Page>
+      <Page onClick={props.onClickNextPage}>&gt;</Page>
     </div>
   );
 }
