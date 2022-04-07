@@ -3,7 +3,7 @@ import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-// 페치가 여기에 있는 이유가? 기존의 글과 제목, 콘텐츠를 보여주기 위함?
+// 페치가 여기에 있는 이유가? 기존의 글과 제목, 콘텐츠를 보여주기 위헤
 const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
     fetchBoard(boardId: $boardId) {

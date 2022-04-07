@@ -23,7 +23,6 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 
   :hover {
-    /* color: blue; */
     font-weight: bold;
   }
 `;

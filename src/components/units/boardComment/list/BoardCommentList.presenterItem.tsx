@@ -28,7 +28,6 @@ import {
 } from "./BoardCommentList.styles";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
-// 댓글 삭제하기
 export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
 ) {
@@ -37,6 +36,7 @@ export default function BoardCommentListUIItem(
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [myPassword, setMyPassword] = useState("");
 
+  // 댓글 삭제하기
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteBoardComment">,
     IMutationDeleteBoardCommentArgs

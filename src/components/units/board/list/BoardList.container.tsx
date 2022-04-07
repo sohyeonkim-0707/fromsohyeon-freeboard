@@ -29,10 +29,8 @@ export default function BoardList() {
   };
 
   const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    // event.target // 태그전체
-    // event.target.value
-    // event.target.id
-
+    // instanceof 개체가 특정 클래스의 요소인지
+    // document.getElementById("bbb").value
     if (event.target instanceof Element)
       router.push(`/boards/${event.target.id}`);
   };

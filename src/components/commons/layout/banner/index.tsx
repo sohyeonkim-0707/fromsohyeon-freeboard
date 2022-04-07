@@ -5,27 +5,27 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
-  height: 300px;
+  height: 250px;
   background-color: lightgray;
 `;
 
 // css
-// const StyledSlider = styled(Slider)`
-//   height: 260px;
-//   text-align: center;
-// `;
+const StyledSlider = styled(Slider)`
+  height: 260px;
+  text-align: center;
+`;
 
-// const Photo = styled.img`
-//   margin: 10px auto;
-//   height: 190px;
-//   .slick-slide div {
-//     outline: none;
-//   }
-// `;
+const Photo = styled.img`
+  margin: 10px auto;
+  height: 190px;
+  .slick-slide div {
+    outline: none;
+  }
+`;
 
 const Title = styled.p`
   text-align: center;
-  line-height: 300px;
+  line-height: 250px;
 `;
 
 const settings = {
@@ -42,6 +42,8 @@ export default function LayoutBanner() {
     // div 화살표 패딩을 줘야 한다.
     <Wrapper>
       <Title>Banner</Title>
+
+      {/* 아직 이미지 미설정 */}
       {/* <StyledSlider {...settings}>
         <div>
           <Photo src={"/images/berlin.jpg"}></Photo>

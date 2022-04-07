@@ -5,6 +5,7 @@ import LayoutBanner from "./banner";
 import LayoutNavigation from "./navigation";
 import LayoutFooter from "./footer";
 import { ReactNode } from "react";
+import { useRouter } from "next/router";
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -24,21 +25,24 @@ const Body = styled.div`
 //   }
 // `;
 
+const HIDDEN_PAGE = ["/"];
+
 interface ILayoutProps {
   children: ReactNode;
 }
 
 export default function Layout(props: ILayoutProps) {
+  const router = useRouter();
+  const isHidden = HIDDEN_PAGE.includes(router.asPath);
   return (
     <>
-      <LayoutHeader />
-      <LayoutBanner />
-      <LayoutNavigation />
-      <BodyWrapper>
-        {/* <LayoutSidebar> Sidebar </LayoutSidebar> */}
-        <Body>{props.children}</Body>
-      </BodyWrapper>
-      <LayoutFooter />
+      {!isHidden && <LayoutHeader />}
+      {!isHidden && <LayoutBanner />}
+      {!isHidden && <LayoutNavigation />}
+      {/* <LayoutSidebar> Sidebar </LayoutSidebar> */}
+      <Body>{props.children}</Body>
+
+      {!isHidden && <LayoutFooter />}
     </>
   );
 }
