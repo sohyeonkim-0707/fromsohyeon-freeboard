@@ -7,9 +7,9 @@ import LayoutFooter from "./footer";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
-const BodyWrapper = styled.div`
-  display: flex;
-`;
+// const BodyWrapper = styled.div`
+//   display: flex;
+// `;
 // 바디영역
 const Body = styled.div`
   /* height: 500px; */

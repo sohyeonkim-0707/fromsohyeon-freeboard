@@ -25,7 +25,7 @@ const Photo = styled.img`
 
 const Title = styled.p`
   text-align: center;
-  line-height: 250px;
+  line-height: 10px;
 `;
 
 const settings = {

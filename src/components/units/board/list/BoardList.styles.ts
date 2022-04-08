@@ -67,8 +67,9 @@ export const BoardNewIcon = styled(FormOutlined)`
 export const Button = styled.button`
   width: 171px;
   height: 45px;
-  background-color: white;
-  border-radius: 15px;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: none;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -76,6 +77,6 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: lightgray;
+    color: white;
   }
 `;
