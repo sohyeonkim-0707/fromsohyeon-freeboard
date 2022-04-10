@@ -36,7 +36,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [fileUrls, setFileUrls] = useState(["", "", ""]); // 사진
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -118,13 +118,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setZipcode(data.zonecode);
     setIsOpen(false);
   };
-
+  // presenter props 내려줘야함
   const onChangeFileUrls = (fileUrl: string, index: number) => {
     const newFileUrls = [...fileUrls];
     newFileUrls[index] = fileUrl;
     setFileUrls(newFileUrls);
   };
-  // onClick 사용자가 요소를 클릭할 때 발생
+
+  // 등록하기 버트
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");
@@ -168,10 +169,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  // 수정시 변경된 값만 뮤테이션 날려주기
+  // 이미지 변경 유무 확인하기
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    // currentFiles랑 defaultFiles가 같으면 false 다르면 true
     const isChangedFiles = currentFiles !== defaultFiles;
 
     // 셋 중 하나는 수정을 해야지 수정 뮤테이션을 날린다.

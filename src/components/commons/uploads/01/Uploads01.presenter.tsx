@@ -14,11 +14,12 @@ export default function Uploads01UI(props: IUploads01UIProps) {
           src={`https://storage.googleapis.com/${props.fileUrl}`}
         />
       ) : (
+        // 눈에 보이는 곳
         <UploadButton onClick={props.onClickUpload}>
           <>+</>
-          <>Upload</>
         </UploadButton>
       )}
+      {/* 숨김 display: none */}
       <UploadFileHidden
         type="file"
         ref={props.fileRef}

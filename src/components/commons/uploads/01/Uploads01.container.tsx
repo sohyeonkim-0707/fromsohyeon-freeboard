@@ -14,13 +14,14 @@ export default function Uploads01(props: IUploads01Props) {
     fileRef.current?.click();
   };
 
+  // 실재 눌려지는 곳
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = checkValidationImage(event.target.files?.[0]);
-    if (!file) return;
+    const file = checkValidationImage(event.target.files?.[0]); // 사진 검증
+    if (!file) return; // 검증 안되면 나가리
 
     try {
       const result = await uploadFile({ variables: { file } });
-      props.onChangeFileUrls(result.data.uploadFile.url, props.index);
+      props.onChangeFileUrls(result.data.uploadFile.url, props.index); // BoardWrite.container에서 props 내려줌
     } catch (error) {
       Modal.error({ content: error.message });
     }
