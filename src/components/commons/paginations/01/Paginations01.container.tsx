@@ -13,7 +13,7 @@ export default function Paginations01(props: IPaginations01Props) {
     if (!(event.target instanceof Element)) return;
     const activedPage = Number(event.target.id);
     setActivedPage(activedPage);
-    props.refetch({ page: activedPage });
+    props.refetch({ page: activedPage }); // refetch 부모 bordelist.container>presenter에서 가져옴
   };
 
   // 이전페이지

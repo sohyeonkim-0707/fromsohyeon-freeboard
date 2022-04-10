@@ -1,5 +1,5 @@
 // 게시글 등록하기 container
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import BoardWriteUI from "./BoardWrite.presenter";
@@ -36,6 +36,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -118,6 +119,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen(false);
   };
 
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
   // onClick 사용자가 요소를 클릭할 때 발생
   const onClickSubmit = async () => {
     if (writer === "") {
@@ -148,6 +154,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
                 address,
                 addressDetail,
               },
+              images: fileUrls,
             },
           },
         });
@@ -163,6 +170,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   // 수정시 변경된 값만 뮤테이션 날려주기
   const onClickUpdate = async () => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     // 셋 중 하나는 수정을 해야지 수정 뮤테이션을 날린다.
     if (
       !title && // 타이틀이 공백이라면 ...
@@ -170,7 +181,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       !youtubeUrl &&
       !address &&
       !addressDetail &&
-      !zipcode
+      !zipcode &&
+      !isChangedFiles
     ) {
       // alert("수정한 내용이 없습니다.");
       Modal.success({ content: "수정한 내용이 없습니다." });
@@ -196,6 +208,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
+
     // 뮤테이션 날려주기
     try {
       await updateBoard({
@@ -212,6 +226,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setFileUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   return (
     <BoardWriteUI
       isActive={isActive}
@@ -227,6 +247,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
@@ -235,6 +256,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      fileUrls={fileUrls}
     />
   );
 }

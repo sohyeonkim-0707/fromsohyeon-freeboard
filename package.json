@@ -32,7 +32,8 @@
     "react-player": "^2.10.0",
     "react-slick": "^0.28.1",
     "react-slider": "^2.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@graphql-codegen/typescript": "^2.4.8",

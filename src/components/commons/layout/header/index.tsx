@@ -1,6 +1,7 @@
 // 헤더 페이지
 
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   height: 50px;
@@ -29,11 +30,21 @@ const InnerButton = styled.button`
 `;
 
 export default function LayoutHeader() {
+  const router = useRouter();
+
+  const onClickMoveToLogin = () => {
+    router.push("/Login");
+  };
+
+  const onCickMoveToJoin = () => {
+    router.push("/Join");
+  };
+
   return (
     <Wrapper>
       <InnerWrapper>
-        <InnerButton>login</InnerButton>
-        <InnerButton>join</InnerButton>
+        <InnerButton onClick={onClickMoveToLogin}>login</InnerButton>
+        <InnerButton onClick={onCickMoveToJoin}>join</InnerButton>
       </InnerWrapper>
     </Wrapper>
   );

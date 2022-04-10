@@ -17,6 +17,7 @@ const Img = styled.img`
 export default function OpenapiList() {
   const [imgUrls, setImgUrls] = useState<string[]>([]);
 
+  // useEffect 에서 API 요청
   useEffect(() => {
     const getImg = async () => {
       new Array(15).fill(1).map(async (_) => {
@@ -24,7 +25,7 @@ export default function OpenapiList() {
           "https://dog.ceo/api/breeds/image/random"
         );
         console.log(result);
-        setImgUrls((prev) => [...prev, result.data.message]);
+        setImgUrls((prev) => [...prev, result.data.message]); // 기존에 있던 이미지 + 가지고 온 이미지
       });
     };
     getImg();

@@ -21,7 +21,8 @@ const MenuItem = styled.div`
   }
 `;
 
-const NAVIGATION_MENUS = [
+// 메뉴 추가하기
+const NAVI_MENU = [
   { name: "OPENAPI", page: "/openapi" },
   { name: "COMUNNITY", page: "/boards" },
   { name: "MARKET", page: "/markets" },
@@ -37,7 +38,7 @@ export default function LayoutNavigation() {
 
   return (
     <Wrapper>
-      {NAVIGATION_MENUS.map((el) => (
+      {NAVI_MENU.map((el) => (
         <Fragment key={el.page}>
           <MenuItem id={el.page} onClick={onClickMenu}>
             {el.name}
