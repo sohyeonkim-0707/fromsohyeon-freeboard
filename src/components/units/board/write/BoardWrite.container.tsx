@@ -42,17 +42,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  // const [inputs, setInputs] = useState({
-  //   writer:"",
-  //   title:"",
-  //   password:"",
-  //   contents:"",
-  //   youtubeUrl:"",
-  //   zipcode:"",
-  //   address:"",
-  //   addressDetail:"",
-  // })
-
   // onChange 작성한 JS 통해 변화가 일어났는지를 감지 & input 안의 값이 변경될 때에 발생
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);

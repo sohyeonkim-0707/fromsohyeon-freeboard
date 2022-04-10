@@ -39,7 +39,6 @@ export default function BoardDetail() {
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
 
-  // codegen-query
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {
