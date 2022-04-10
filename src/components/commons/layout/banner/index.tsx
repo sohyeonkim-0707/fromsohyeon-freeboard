@@ -23,11 +23,6 @@ const Photo = styled.img`
   }
 `;
 
-const Title = styled.p`
-  text-align: center;
-  line-height: 10px;
-`;
-
 const settings = {
   dots: true, // dots 사진 밑에 버튼 false 하면 사라진다
   fade: true, // infinite 콘텐츠 끝까지 갔을 때 다음 콘텐츠를 처음 콘텐츠로 가져와 반복
@@ -41,8 +36,6 @@ export default function LayoutBanner() {
   return (
     // div 화살표 패딩을 줘야 한다.
     <Wrapper>
-      <Title>Banner</Title>
-
       {/* 아직 이미지 미설정 */}
       {/* <StyledSlider {...settings}>
         <div>

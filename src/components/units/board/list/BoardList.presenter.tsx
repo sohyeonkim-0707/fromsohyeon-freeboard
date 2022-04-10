@@ -4,10 +4,18 @@ import * as S from "./BoardList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
 import PagiNations01 from "../../../commons/paginations/01/Paginations01.container";
+import Search01 from "../../../commons/search/01/Search01.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <S.Wrapper>
+      {/* 검색 자리 여기? import 해주나 */}
+      <Search01
+        refetch={props.refetch}
+        refetchBoardsCount={props.refetchBoardsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <S.TableTop />
       <S.Row>
         <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
@@ -24,7 +32,14 @@ export default function BoardListUI(props: IBoardListUIProps) {
           </S.ColumnBasic>
 
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
+            {el.title
+              .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
+              .split("@#$%")
+              .map((el) => (
+                <S.TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                  {el}
+                </S.TextToken>
+              ))}
           </S.ColumnTitle>
 
           <S.ColumnBasic>{el.writer}</S.ColumnBasic>
@@ -36,8 +51,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
       <S.Footer>
         <S.Button onClick={props.onClickMoveToBoardNew}>
-          <S.BoardNewIcon />
-          게시물 등록하기
+          🖌 게시물 등록하기
         </S.Button>
         {/* 페이지네이션 */}
         <PagiNations01 refetch={props.refetch} count={props.count} />
