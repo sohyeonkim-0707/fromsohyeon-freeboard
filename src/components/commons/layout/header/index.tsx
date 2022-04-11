@@ -33,11 +33,11 @@ export default function LayoutHeader() {
   const router = useRouter();
 
   const onClickMoveToLogin = () => {
-    router.push("/Login");
+    router.push("/login");
   };
 
   const onCickMoveToJoin = () => {
-    router.push("/Join");
+    router.push("/join");
   };
 
   return (
