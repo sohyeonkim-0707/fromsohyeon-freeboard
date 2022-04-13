@@ -26,7 +26,7 @@ const NAVI_MENU = [
   { name: "OPENAPI", page: "/openapi" },
   { name: "COMUNNITY", page: "/boards" },
   { name: "MARKET", page: "/markets" },
-  { name: "MYPAGE", page: "/mypages" },
+  { name: "MYPAGE", page: "/mypage" },
 ];
 
 export default function LayoutNavigation() {

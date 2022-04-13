@@ -55,13 +55,15 @@ export default function LoginPage() {
 
   const onClickLogin = async () => {
     if (email === "") {
-      setEmailError("이메일을 입력해주세요.");
+      // setEmailError("이메일을 입력해주세요.");
+      alert("이메일을 입력해 주세요");
     }
     if (password === "") {
       setPasswordError("비밀번호를 입력해주세요.");
     }
+
     if (/^\w+@\w+\.\w+$/.test(email) === false) {
-      alert("이메일 형식이 맞지 않습니다.");
+      setEmailError("이메일 형식이 맞지 않습니다.");
       return;
     }
     if (email !== "" && password !== "") {
@@ -75,9 +77,10 @@ export default function LoginPage() {
         console.log(result);
         const accessToken = result.data.loginUser.accessToken;
         setAccessToken(accessToken);
+        localStorage.setItem("accessToken", accessToken);
         console.log(accessToken);
         Modal.success({ content: "로그인에 성공하였습니다!" });
-        router.push("/boards/new");
+        router.push("/mypage");
       } catch (error) {
         Modal.error({ content: error.message });
       }
