@@ -1,3 +1,4 @@
+// 댓글 목록
 import BoardCommentListUIItem from "./BoardCommentList.presenterItem";
 import { IBoardCommentListUIProps } from "./BoardCommentList.types";
 import InfiniteScroll from "react-infinite-scroller";
@@ -14,7 +15,7 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
         useWindow={false}
       >
         {props.data?.fetchBoardComments.map((el) => (
-          <BoardCommentListUIItem key={el._id} el={el} />
+          <BoardCommentListUIItem key={el._id} el={el} /> // el 내려가기 시작 !!!!
         ))}
       </InfiniteScroll>
     </Scroll>

@@ -15,9 +15,9 @@ import { Modal } from "antd";
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false); // 버튼 노란색 활성화
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // 주소창 화면
 
-  // codegen-mutation
+  // mutation 게시글 등록하기
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -125,7 +125,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setFileUrls(newFileUrls);
   };
 
-  // 등록하기 버트
+  // 등록하기 !!!  ====================
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");
@@ -169,7 +169,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  // 이미지 변경 유무 확인하기
+  // 수정하기 ====================
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
@@ -203,6 +203,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+    // 주소
     if (zipcode || address || addressDetail) {
       updateBoardInput.boardAddress = {};
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
@@ -210,9 +211,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
+    // 이미지 파일
     if (isChangedFiles) updateBoardInput.images = fileUrls;
 
-    // 뮤테이션 날려주기
+    // 수정하기 뮤테이션 날려주기
     try {
       await updateBoard({
         variables: {
@@ -228,6 +230,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  // 이미지등록
   useEffect(() => {
     if (props.data?.fetchBoard.images?.length) {
       setFileUrls([...props.data?.fetchBoard.images]);

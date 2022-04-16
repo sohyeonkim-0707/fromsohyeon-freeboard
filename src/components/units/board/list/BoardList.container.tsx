@@ -13,9 +13,9 @@ import {
 
 export default function BoardList() {
   const router = useRouter();
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(""); // 검색어색상
 
-  // 페이지 네이션 컴포넌트로 refetch랑 count 넘겨주는 중
+  // 페이지 네이션 컴포넌트로 refetch랑 count 넘겨주는 중 !!!
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
@@ -37,6 +37,7 @@ export default function BoardList() {
       router.push(`/boards/${event.target.id}`);
   };
 
+  // 검색어 키워드
   function onChangeKeyword(value: string) {
     setKeyword(value);
   }

@@ -13,8 +13,8 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
       <S.InputWrapper>
         <S.Input
           placeholder="작성자"
-          readOnly={!!props.el?.writer}
-          defaultValue={props.el?.writer}
+          readOnly={!!props.el?.writer} // BoardCommentList.presenter에서 내려주는 el
+          defaultValue={props.el?.writer} // BoardCommentList.presenter에서 내려주는 el (수정하기)
           onChange={props.onChangeWriter}
         />
         <S.Input
@@ -27,7 +27,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
       <S.ContentsWrapper>
         <S.Contents
           maxLength={100}
-          defaultValue={props.el?.contents}
+          defaultValue={props.el?.contents} // BoardCommentList.presenter에서 내려주는 el (수정하기)
           onChange={props.onChangeContents}
           placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
         />

@@ -31,11 +31,11 @@ const InnerButton = styled.button`
 
 export default function LayoutHeader() {
   const router = useRouter();
-
+  // 로그인 페이지로 이동
   const onClickMoveToLogin = () => {
     router.push("/login");
   };
-
+  // 회원가입 페이지로 이동
   const onCickMoveToJoin = () => {
     router.push("/join");
   };

@@ -1,3 +1,5 @@
+// 댓글 목록에 있는 댓글 컴포넌트
+
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
@@ -32,7 +34,7 @@ export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
 ) {
   const router = useRouter();
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false); // 이게 모냐
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [myPassword, setMyPassword] = useState("");
 

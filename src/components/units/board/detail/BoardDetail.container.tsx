@@ -22,23 +22,24 @@ import { Modal } from "antd";
 export default function BoardDetail() {
   const router = useRouter();
 
-  // 좋아요
+  // mutation 좋아요
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,
     IMutationLikeBoardArgs
   >(LIKE_BOARD);
-  // 싫어요
+  // mutation 싫어요
   const [dislikeBoard] = useMutation<
     Pick<IMutation, "dislikeBoard">,
     IMutationDislikeBoardArgs
   >(DISLIKE_BOARD);
 
-  // 게시글 삭제
+  // mutation 게시글 삭제
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
 
+  // 등록한 데이터 불러오기 > 페치보드 ========================
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {
@@ -56,7 +57,7 @@ export default function BoardDetail() {
     router.push(`/boards/${router.query.boardId}/edit`);
   };
 
-  // 삭제하기 mutation
+  // 삭제하기 mutation ========================
   const onClickDelete = async () => {
     try {
       await deleteBoard({
@@ -70,21 +71,21 @@ export default function BoardDetail() {
     }
   };
 
-  // 좋아요 mutation 요청하기
+  // 좋아요 mutation 요청하기  ========================
   const onClickLike = () => {
     likeBoard({
       variables: { boardId: String(router.query.boardId) },
-      // 다시 반영된 것 확인
+      // 다시 반영할 것 가져오기
       refetchQueries: [
         { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],
     });
   };
-  // 싫어요 mutation 요청하기
+  // 싫어요 mutation 요청하기 ========================
   const onClickDislike = () => {
     dislikeBoard({
       variables: { boardId: String(router.query.boardId) },
-      // 다시 반영된 것 확인
+      // 다시 반영할 것 가져오기
       refetchQueries: [
         { query: FETCH_BOARD, variables: { boardId: router.query.boardId } },
       ],

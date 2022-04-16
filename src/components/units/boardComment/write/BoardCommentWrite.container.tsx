@@ -26,6 +26,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const [contents, setContents] = useState("");
   const [star, setStar] = useState(0); // 별 초기값 0
 
+  // 뎃글 등록하기
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
@@ -53,7 +54,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     setStar(value);
   }
 
-  // 댓글 등록하기 버튼을 눌렀을 때 실행되는 함수
+  // 댓글 등록하기 !!!!!!!!!!!!!! 버튼을 눌렀을 때 실행되는 함수 ====================
   async function onClickWrite() {
     try {
       await createBoardComment({
@@ -84,7 +85,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     }
   }
 
-  // 댓글 수정하기
+  // 댓글 수정하기 !!!!!!!!!!!!!! ====================
   async function onClickUpdate() {
     if (!contents) {
       alert("내용이 수정되지 않았습니다.");
@@ -97,7 +98,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
 
     try {
       // if (!props.el?._id) return;
-
       const updateBoardCommentInput: IUpdateBoardCommentInput = {};
       if (contents) updateBoardCommentInput.contents = contents;
       if (star !== props.el.rating) updateBoardCommentInput.rating = star;
@@ -106,11 +106,12 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
         variables: {
           updateBoardCommentInput,
           password,
-          boardCommentId: props.el?._id,
+          boardCommentId: props.el?._id, // 이게 뭐지
         },
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
+            // 어떤 게시글에 댓글이 달려야하는지 필요하기에 댓글의 id가 필요
             variables: { boardId: router.query.boardId },
           },
         ],

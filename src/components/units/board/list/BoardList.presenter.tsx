@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <S.Wrapper>
-      {/* 검색 자리 여기? import 해주나 */}
+      {/* 검색 */}
       <Search01
         refetch={props.refetch}
         refetchBoardsCount={props.refetchBoardsCount}
@@ -30,7 +30,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           <S.ColumnBasic>
             {String(el._id).slice(-4).toUpperCase()}
           </S.ColumnBasic>
-
+          {/* 검색하기 키워드 */}
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
             {el.title
               .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)

@@ -20,6 +20,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             </S.Info>
           </S.AvatarWrapper>
           <S.IconWrapper>
+            {/* 툴팁 */}
             {/* <S.LinkIcon src="/images/board/detail/link.png" />
             <Tooltip
               placement="topRight"

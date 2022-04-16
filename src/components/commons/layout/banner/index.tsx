@@ -23,6 +23,7 @@ const Photo = styled.img`
   }
 `;
 
+// 페이지네이션 구현세팅
 const settings = {
   dots: true, // dots 사진 밑에 버튼 false 하면 사라진다
   fade: true, // infinite 콘텐츠 끝까지 갔을 때 다음 콘텐츠를 처음 콘텐츠로 가져와 반복

@@ -1,3 +1,6 @@
+// 네비게이션 페이지
+// 여기에 각 종 메뉴가 있음 라우터해서 각 페이지로 이동할거임
+
 import { useRouter } from "next/router";
 import { MouseEvent, Fragment } from "react";
 import styled from "@emotion/styled";
@@ -21,7 +24,7 @@ const MenuItem = styled.div`
   }
 `;
 
-// 메뉴 추가하기
+// 메뉴 추가하기 함수
 const NAVI_MENU = [
   { name: "OPENAPI", page: "/openapi" },
   { name: "COMUNNITY", page: "/boards" },
@@ -36,6 +39,7 @@ export default function LayoutNavigation() {
     if (event.target instanceof Element) router.push(event.target.id);
   };
 
+  // map 으로 메뉴 뿌려줌
   return (
     <Wrapper>
       {NAVI_MENU.map((el) => (

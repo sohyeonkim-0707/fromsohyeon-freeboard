@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export const Column = styled.span`
-  margin: 0px 50px;
-`;
+// export const Column = styled.span`
+//   margin: 0px 50px;
+// `;
 
 interface IPageProps {
   isActive?: boolean;
