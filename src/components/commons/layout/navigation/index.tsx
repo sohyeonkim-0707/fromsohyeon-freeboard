@@ -27,8 +27,9 @@ const MenuItem = styled.div`
 // 메뉴 추가하기 함수
 const NAVI_MENU = [
   { name: "OPENAPI", page: "/openapi" },
+  { name: "POST", page: "/boards/new" },
   { name: "COMUNNITY", page: "/boards" },
-  { name: "MARKET", page: "/markets" },
+  { name: "MARKET", page: "/market/new" },
   { name: "MYPAGE", page: "/mypage" },
 ];
 
