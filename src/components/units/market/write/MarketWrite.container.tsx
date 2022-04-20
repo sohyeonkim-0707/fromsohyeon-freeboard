@@ -3,7 +3,7 @@ import { schema } from "./MarketWrite.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import { CREATE_USED_ITEM } from "./MarketWrite.queris";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queris";
 import ProductWriteUI from "./MarketWrite.presenter";
 import { IMarketWriteProps } from "./MarketWrite.types";
 // import { useState } from "react";
@@ -18,9 +18,10 @@ export default function MarketWrite(props: IMarketWriteProps) {
   });
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
   // 상품 등록하기
-  const onClickUploadProduct = async (data) => {
+  const onClickUploadProduct = async (data: any) => {
     try {
       const result = await createUseditem({
         variables: {
@@ -35,19 +36,32 @@ export default function MarketWrite(props: IMarketWriteProps) {
     }
   };
   // 상품 수정하기
-  const onClcikEditProduct = async (data) => {
-    console.log("수정", data);
+  const onClcikEditProduct = async (data: any) => {
+    // console.log("수정", data);
+    try {
+      await updateUseditem({
+        variables: {
+          updateUseditemInput: { ...data },
+          useditemId: router.query.productId,
+        },
+      });
+
+      alert("상품을 수정합니다.");
+      router.push(`/market/${router.query.productId}`);
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   return (
     <ProductWriteUI
       handleSubmit={handleSubmit}
-      onClickUploadProduct={onClickUploadProduct}
-      onClcikEditProduct={onClcikEditProduct}
       register={register}
       formState={formState}
       isEdit={props.isEdit}
       data={props.data}
+      onClickUploadProduct={onClickUploadProduct}
+      onClcikEditProduct={onClcikEditProduct}
     />
   );
 }

@@ -54,8 +54,14 @@ export const Body = styled.div`
   min-height: 800px;
 `;
 
-export const Title = styled.h1`
-  padding-top: 30px;
+export const ProductRemarks = styled.div`
+  font-size: 18px;
+  color: #bdbdbd;
+  margin: 4px 0px;
+`;
+
+export const ProductName = styled.h1`
+  margin: 4px 0px;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;

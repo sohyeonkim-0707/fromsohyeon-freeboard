@@ -6,9 +6,9 @@ import { FETCH_USED_ITEM } from "./MarketDetail.queris";
 export default function MarKetDetail() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM, {
-    variables: { useditemId: router.query.productId },
+    variables: { useditemId: String(router.query.productId) },
   });
-  console.log("tya", router.query.productId);
+  // console.log("tya", router.query.productId);
 
   const onClickMoveToProductEdit = () => {
     router.push(`/market/${router.query.productId}/edit`);

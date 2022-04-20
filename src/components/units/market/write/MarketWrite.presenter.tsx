@@ -9,7 +9,14 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         {props.isEdit ? "상품 수정하기" : "상품 등록하기"}
       </S.MainTitle>
 
-      <form onSubmit={props.handleSubmit(props.onClickUploadProduct)}>
+      {/* <form onSubmit={props.handleSubmit(props.onClickUploadProduct)}> */}
+      <form
+        onSubmit={
+          props.isEdit
+            ? props.handleSubmit(props.onClcikEditProduct)
+            : props.handleSubmit(props.onClickUploadProduct)
+        }
+      >
         <S.Title>상품명</S.Title>
         <S.InputText
           type="text"
@@ -65,7 +72,3 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
     </S.Wrapper>
   );
 }
-
-// onClick={
-//             props.isEdit ? props.onClcikEditProduct : props.onClickUploadProduct
-//           }

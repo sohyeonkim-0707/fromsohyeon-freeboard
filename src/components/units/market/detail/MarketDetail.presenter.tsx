@@ -10,7 +10,7 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           <S.AvatarWrapper>
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
-              <S.Writer>{props.data?.fetchUseditem?.name}</S.Writer>
+              <S.Writer>판매자</S.Writer>
               <S.CreatedAt>
                 {getDate(props.data?.fetchUseditem?.createdAt)}
               </S.CreatedAt>
@@ -18,8 +18,11 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           </S.AvatarWrapper>
         </S.Header>
         <S.Body>
-          <S.Title>{props.data?.fetchUseditem?.remarks}</S.Title>
-          <S.Price>{props.data?.fetchUseditem?.price}</S.Price>
+          <S.ProductRemarks>
+            {props.data?.fetchUseditem?.remarks}
+          </S.ProductRemarks>
+          <S.ProductName>{props.data?.fetchUseditem?.name}</S.ProductName>
+          <S.Price>{props.data?.fetchUseditem?.price}원</S.Price>
           {/* <S.ImageWrapper>
             {props.data?.fetchBoard.images
               ?.filter((el: string) => el)
