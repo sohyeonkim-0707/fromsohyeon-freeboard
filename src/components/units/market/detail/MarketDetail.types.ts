@@ -1,4 +1,5 @@
 export interface IMarketDetailUIProps {
-  data: any;
+  data?: any;
   onClickMoveToProductEdit: () => void;
+  onClickDeleteProduct: () => void;
 }

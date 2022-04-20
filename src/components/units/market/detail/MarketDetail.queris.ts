@@ -13,3 +13,9 @@ export const FETCH_USED_ITEM = gql`
     }
   }
 `;
+
+export const DELETE_USED_ITEM = gql`
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId)
+  }
+`;

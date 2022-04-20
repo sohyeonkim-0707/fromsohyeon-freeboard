@@ -44,7 +44,7 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
         <S.Button>목록으로</S.Button>
         <S.Button onClick={props.onClickMoveToProductEdit}>수정하기</S.Button>
         <S.Button>구매하기</S.Button>
-        <S.Button>삭제하기</S.Button>
+        <S.Button onClick={props.onClickDeleteProduct}>삭제하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );
