@@ -1,3 +1,4 @@
+// Apollo 세팅 / 전역 상태관리를 하기 위해 사용
 import {
   ApolloClient,
   ApolloProvider,

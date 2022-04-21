@@ -17,7 +17,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [isActive, setIsActive] = useState(false); // 버튼 노란색 활성화
   const [isOpen, setIsOpen] = useState(false); // 주소창 화면
 
-  // mutation 게시글 등록하기
+  // 📌  mutation 게시글 등록하기
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -125,7 +125,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setFileUrls(newFileUrls);
   };
 
-  // 등록하기 !!!  ====================
+  // 📌 등록하기 !!!  ====================
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");

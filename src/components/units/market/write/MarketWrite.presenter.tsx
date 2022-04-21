@@ -37,7 +37,8 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
 
         <S.Title>상품설명</S.Title>
         <S.DetailText
-          {...props.register("contents")}
+          // {...props.register("contents")}
+          onChange={props.onChangeContents}
           placeholder="상품설명을 작성해주세요."
           defaultValue={props.data?.fetchUseditem.contents}
         />
@@ -65,6 +66,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           onClick={
             props.isEdit ? props.onClcikEditProduct : props.onClickUploadProduct
           }
+          isActive={props.formState.isValid}
         >
           {props.isEdit ? "수정하기" : "등록하기"}
         </S.EnrolledButton>

@@ -1,4 +1,9 @@
 import styled from "@emotion/styled";
+import { IEnrolledButton } from "./MarketWrite.types";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -29,6 +34,7 @@ export const Title = styled.div`
   width: 996px;
   height: 52px;
   /* border: 1px solid red; */
+  margin-top: 30px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -44,12 +50,11 @@ export const InputText = styled.input`
   /* border: 1px solid blue; */
 `;
 
-export const DetailText = styled.textarea`
+export const DetailText = styled(ReactQuill)`
   width: 996px;
-  height: 320px;
-  border: 1px solid #bdbdbd;
-  outline: none;
-  /* border: 1px solid blue; */
+  height: 300px;
+  /* border: 1px solid #bdbdbd; */
+  margin-bottom: 20px;
 `;
 
 export const Error = styled.div`
@@ -60,7 +65,9 @@ export const Error = styled.div`
 export const EnrolledButton = styled.button`
   width: 179px;
   height: 52px;
-  background: #bdbdbd;
+  /* background: #bdbdbd; */
+  background: ${(props: IEnrolledButton) =>
+    props.isActive ? "yellow" : "#bdbdbd"};
   border: none;
   margin: 70px auto;
   display: block;

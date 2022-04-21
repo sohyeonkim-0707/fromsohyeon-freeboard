@@ -1,6 +1,7 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./MarketDetail.styles";
 import { IMarketDetailUIProps } from "./MarketDetail.types";
+import Dompurify from "dompurify";
 
 export default function MarKetDetailUI(props: IMarketDetailUIProps) {
   return (
@@ -33,7 +34,15 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
                 />
               ))}
           </S.ImageWrapper> */}
-          <S.Contents>{props.data?.fetchUseditem?.contents}</S.Contents>
+          {typeof window !== "undefined" && (
+            <S.Contents
+              dangerouslySetInnerHTML={{
+                __html: Dompurify.sanitize(props.data?.fetchUseditem.contents),
+              }}
+            ></S.Contents>
+          )}
+
+          {/* <S.Contents>{props.data?.fetchUseditem?.contents}</S.Contents> */}
           <S.Tag>{props.data?.fetchUseditem?.tags}</S.Tag>
           <S.line></S.line>
           <S.map>지도</S.map>

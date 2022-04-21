@@ -17,9 +17,14 @@ export interface IUpdateProductInput {
   price?: string;
 }
 
+export interface IEnrolledButton {
+  isActive: boolean;
+}
+
 export interface IProductWriteUIProps {
   isEdit: boolean;
   data?: Pick<IQuery, "fetchUseditem">;
   onClickUploadProduct: () => void;
   onClcikEditProduct: () => void;
+  onChangeContents: (value: string) => void;
 }
