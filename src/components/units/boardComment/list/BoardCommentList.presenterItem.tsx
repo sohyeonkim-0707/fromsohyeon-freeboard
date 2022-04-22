@@ -44,10 +44,10 @@ export default function BoardCommentListUIItem(
     IMutationDeleteBoardCommentArgs
   >(DELETE_BOARD_COMMENT);
 
+  // 📌 댓글삭제하기
   function onClickUpdate() {
     setIsEdit(true);
   }
-
   async function onClickDelete() {
     try {
       await deleteBoardComment({

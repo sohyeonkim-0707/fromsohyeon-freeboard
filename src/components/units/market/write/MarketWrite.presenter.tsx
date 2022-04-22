@@ -62,6 +62,30 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         />
         <S.Error>{props.formState.errors.tags?.message}</S.Error>
 
+        <S.MapWrapper>
+          <S.MapImage>
+            <S.Location>거래위치</S.Location>
+            <S.KakaoMap>지도</S.KakaoMap>
+          </S.MapImage>
+
+          <S.InputMap>
+            <S.GpasWrapper>
+              <S.GpsTitle>GPS</S.GpsTitle>
+              <S.GpsInput>
+                <input type="text" placeholder="위도(LAT)"></input>
+                <div> o </div>
+                <input type="text" placeholder="경도(LAT)"></input>
+              </S.GpsInput>
+            </S.GpasWrapper>
+
+            <S.AddressWrapper>
+              <S.AddressTitle> 주소</S.AddressTitle>
+              <S.AddressInput type="text"></S.AddressInput>
+              <S.AddressInput type="text"></S.AddressInput>
+            </S.AddressWrapper>
+          </S.InputMap>
+        </S.MapWrapper>
+
         <S.EnrolledButton
           onClick={
             props.isEdit ? props.onClcikEditProduct : props.onClickUploadProduct

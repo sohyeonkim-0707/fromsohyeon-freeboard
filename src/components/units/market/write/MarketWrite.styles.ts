@@ -54,12 +54,101 @@ export const DetailText = styled(ReactQuill)`
   width: 996px;
   height: 300px;
   /* border: 1px solid #bdbdbd; */
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 export const Error = styled.div`
   color: red;
   font-size: 9px;
+`;
+
+export const MapWrapper = styled.div`
+  width: 996px;
+  height: 300px;
+  /* border: 1px solid blue; */
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const MapImage = styled.div`
+  width: 384px;
+  height: 100%;
+`;
+export const Location = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+`;
+
+export const KakaoMap = styled.div`
+  width: 384px;
+  height: 252px;
+  background: yellow;
+`;
+
+export const InputMap = styled.div`
+  width: 588px;
+  height: 100%;
+  /* border: 1px solid red; */
+`;
+
+export const GpasWrapper = styled.div`
+  width: 100%;
+  height: 128px;
+  /* border: 1px solid orange; */
+`;
+
+export const GpsTitle = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+`;
+
+export const GpsInput = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  input {
+    width: 108px;
+    height: 52px;
+    border: 1px solid #bdbdbd;
+    margin-right: 20px;
+    outline: none;
+  }
+
+  div {
+    margin-right: 20px;
+  }
+`;
+
+export const AddressWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 588px;
+  height: 172px;
+  /* border: 1px solid blue; */
+`;
+
+export const AddressTitle = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+`;
+
+export const AddressInput = styled.input`
+  width: 588px;
+  height: 52px;
+  border: 1px solid #bdbdbd;
+  margin-top: 10px;
+  outline: none;
 `;
 
 export const EnrolledButton = styled.button`

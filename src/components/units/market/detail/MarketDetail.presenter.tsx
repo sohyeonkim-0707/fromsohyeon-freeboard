@@ -11,7 +11,8 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           <S.AvatarWrapper>
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
-              <S.Writer>판매자</S.Writer>
+              {/* <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller> */}
+              <S.Seller>판매자</S.Seller>
               <S.CreatedAt>
                 {getDate(props.data?.fetchUseditem?.createdAt)}
               </S.CreatedAt>

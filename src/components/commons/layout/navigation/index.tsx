@@ -30,6 +30,7 @@ const NAVI_MENU = [
   { name: "POST", page: "/boards/new" },
   { name: "COMUNNITY", page: "/boards" },
   { name: "MARKET", page: "/market/new" },
+  { name: "MARKETLIST", page: "/market" },
   { name: "MYPAGE", page: "/mypage" },
 ];
 

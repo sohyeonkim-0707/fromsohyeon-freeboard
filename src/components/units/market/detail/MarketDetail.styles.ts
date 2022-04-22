@@ -45,7 +45,7 @@ export const Info = styled.div`
   justify-content: center;
 `;
 
-export const Writer = styled.div``;
+export const Seller = styled.div``;
 
 export const CreatedAt = styled.div``;
 
