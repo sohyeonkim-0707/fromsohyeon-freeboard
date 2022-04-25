@@ -47,9 +47,10 @@ export default function BoardDetail() {
     }
   );
 
-  // 목록 페이지로 이동
+  // 📌 목록 페이지로 이동
   const onClickMoveToBoardList = () => {
-    router.push("/boards");
+    // alert("/boards");
+    // router.push("/boards");
   };
 
   // 수정하기 페이지로 이동

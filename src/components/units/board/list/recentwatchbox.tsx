@@ -4,7 +4,14 @@ import styled from "@emotion/styled";
 const Wrapper = styled.div`
   width: 196px;
   height: 505px;
-  border: 1px solid red;
+  border: 1px solid #bdbdbd;
+  margin: 20px 10px;
+`;
+
+const Title = styled.div`
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 export default function RecentWatchBox(props) {
@@ -17,7 +24,7 @@ export default function RecentWatchBox(props) {
   return (
     <div>
       <Wrapper>
-        <div>오늘 본 상품</div>
+        <Title>오늘 본 상품</Title>
         {basketItems?.map((el: any) => (
           <div key={el._id}>
             <div>

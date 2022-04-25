@@ -7,8 +7,8 @@ export default function MarketList() {
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, {});
 
-  // 📌  onLoadMore 무한스크롤
-  function onLoadMore() {
+  // 📌  무한스크롤
+  const onLoadMore = () => {
     if (!data) return; // 데이터가 없으면 스크롤 실행 방지
 
     fetchMore({
@@ -26,10 +26,11 @@ export default function MarketList() {
         }; // 이전 데이터와 다음 데이터 함께 표출(스프레드 연산자)
       },
     });
-  }
+  };
+
   // 📌 해당 상품으로 이동
   const onClickMoveToProduct = (event) => {
-    // alert(event.target.id);
+    // alert(event.target.id); 값나오는지 찍어보기
     router.push(`/market/${event.target.id}`);
   };
 
