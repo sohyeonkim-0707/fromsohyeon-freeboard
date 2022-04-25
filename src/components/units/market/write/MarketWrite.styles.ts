@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+  margin: 80px auto;
 `;
 
 export const MainTitle = styled.div`
@@ -72,6 +73,13 @@ export const MapWrapper = styled.div`
   justify-content: space-between;
 `;
 
+export const Label = styled.div`
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 10px;
+`;
+
 export const MapImage = styled.div`
   width: 384px;
   height: 100%;
@@ -87,7 +95,7 @@ export const Location = styled.div`
 export const KakaoMap = styled.div`
   width: 384px;
   height: 252px;
-  background: yellow;
+  background: lightgray;
 `;
 
 export const InputMap = styled.div`

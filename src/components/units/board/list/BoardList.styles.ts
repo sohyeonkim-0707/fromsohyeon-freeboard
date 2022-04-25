@@ -4,7 +4,7 @@ import { ITextTokenProps } from "./BoardList.types";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 100px;
+  margin: 100px auto;
 `;
 
 export const TableTop = styled.div`

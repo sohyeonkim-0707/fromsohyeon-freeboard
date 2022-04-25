@@ -13,12 +13,12 @@ export default function MarKetDetail() {
   });
   // console.log("tya", router.query.productId);
 
-  // 수정하기 페이지로 이동
+  // 📌 수정하기 페이지로 이동
   const onClickMoveToProductEdit = () => {
     router.push(`/market/${router.query.productId}/edit`);
   };
 
-  // 삭제하기
+  // 📌 삭제하기
   const onClickDeleteProduct = async () => {
     try {
       await deleteUseditem({
@@ -30,6 +30,7 @@ export default function MarKetDetail() {
       alert(error.message);
     }
   };
+  // 📌 장바구니
 
   return (
     <MarKetDetailUI

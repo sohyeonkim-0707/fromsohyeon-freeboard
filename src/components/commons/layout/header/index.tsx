@@ -31,6 +31,11 @@ const InnerButton = styled.button`
 
 export default function LayoutHeader() {
   const router = useRouter();
+
+  // 장바구니 페이지로 이동
+  const onCickMoveToCart = () => {
+    router.push("/mycart");
+  };
   // 로그인 페이지로 이동
   const onClickMoveToLogin = () => {
     router.push("/login");
@@ -43,6 +48,7 @@ export default function LayoutHeader() {
   return (
     <Wrapper>
       <InnerWrapper>
+        <InnerButton onClick={onCickMoveToCart}>mycart</InnerButton>
         <InnerButton onClick={onClickMoveToLogin}>login</InnerButton>
         <InnerButton onClick={onCickMoveToJoin}>join</InnerButton>
       </InnerWrapper>

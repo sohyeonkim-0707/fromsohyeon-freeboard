@@ -6,6 +6,7 @@ import { IBoardListUIProps } from "./BoardList.types";
 import PagiNations01 from "../../../commons/paginations/01/Paginations01.container";
 import Search01 from "../../../commons/search/01/Search01.container";
 import { v4 as uuidv4 } from "uuid";
+import RecentWatchBox from "./recentwatchbox";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -55,6 +56,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
         </S.Button>
         {/* 페이지네이션 */}
         <PagiNations01 refetch={props.refetch} count={props.count} />
+        <RecentWatchBox />
       </S.Footer>
     </S.Wrapper>
   );

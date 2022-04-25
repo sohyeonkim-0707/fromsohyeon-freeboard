@@ -1,10 +1,8 @@
-// withAuth
-
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-// @ts-ignore > 타입스크립트 잠깐 무시 밑줄 지움
-export const withAuth = (Componenet) => (props) => {
+// useAuth
+export function useAuth() {
   const router = useRouter();
 
   // 권한분기 로직 추가하기
@@ -14,6 +12,4 @@ export const withAuth = (Componenet) => (props) => {
       router.push("/login");
     }
   }, []);
-
-  return <Componenet {...props} />;
-};
+}

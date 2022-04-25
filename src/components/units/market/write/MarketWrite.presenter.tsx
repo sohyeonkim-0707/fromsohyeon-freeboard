@@ -1,3 +1,4 @@
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import * as S from "./MarketWrite.styles";
 import { IProductWriteUIProps } from "./MarketWrite.types";
 // import { IMarketWriteUIprops } from "./MarketWrite.types";
@@ -85,6 +86,13 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
             </S.AddressWrapper>
           </S.InputMap>
         </S.MapWrapper>
+        {/* 사진첨부 */}
+
+        <S.Label>사진첨부</S.Label>
+        <Uploads01
+          {...props.register("images")}
+          onChangeFileUrls={props.onChangeFileUrls}
+        />
 
         <S.EnrolledButton
           onClick={

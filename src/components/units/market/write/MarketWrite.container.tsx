@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queris";
 import ProductWriteUI from "./MarketWrite.presenter";
 import { IMarketWriteProps } from "./MarketWrite.types";
+import { useState } from "react";
 // import { useState } from "react";
 // import { Modal } from "antd";
 
@@ -20,15 +21,18 @@ export default function MarketWrite(props: IMarketWriteProps) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
+  const [fileUrls, setFileUrls] = useState(["", "", ""]); // 사진
+
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
   // 📌 웹 에디터 onChange
   const onChangeContents = (value: any) => {
     console.log(value);
-    // 지금 입력한 value 가 <p><br></p> 이 값이면 강제로 "" 빈값으로 만들어주기
-
-    // register로 등록하지 않고 강제로 값을 넣어주는 기능
-    // constents라는 해당 키에 value를 강제로 넣어줘
     setValue("contents", value === "<p><br></p>" ? "" : value);
-    // onChange 됐다고 react-hook-form 에 알려주는 기능
     trigger("contents");
   };
 
@@ -75,6 +79,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       isEdit={props.isEdit}
       data={props.data}
       onChangeContents={onChangeContents}
+      onChangeFileUrls={onChangeFileUrls}
       onClickUploadProduct={onClickUploadProduct}
       onClcikEditProduct={onClcikEditProduct}
     />

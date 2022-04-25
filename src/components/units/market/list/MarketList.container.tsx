@@ -4,9 +4,10 @@ import { useRouter } from "next/router";
 import { FETCH_USED_ITEMS } from "./MarketList.queries";
 
 export default function MarketList() {
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
+  const router = useRouter();
+  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, {});
 
-  // 📌  onLoadMore 함수 만들어주기 (무한스크롤)
+  // 📌  onLoadMore 무한스크롤
   function onLoadMore() {
     if (!data) return; // 데이터가 없으면 스크롤 실행 방지
 
@@ -26,6 +27,23 @@ export default function MarketList() {
       },
     });
   }
+  // 📌 해당 상품으로 이동
+  const onClickMoveToProduct = (event) => {
+    // alert(event.target.id);
+    router.push(`/market/${event.target.id}`);
+  };
 
-  return <MarketListUI data={data} onLoadMore={onLoadMore} />;
+  // 📌 상품등록하기
+  const onClickMovetoNewProduct = () => {
+    router.push("/market/new");
+  };
+
+  return (
+    <MarketListUI
+      data={data}
+      onLoadMore={onLoadMore}
+      onClickMovetoNewProduct={onClickMovetoNewProduct}
+      onClickMoveToProduct={onClickMoveToProduct}
+    />
+  );
 }
