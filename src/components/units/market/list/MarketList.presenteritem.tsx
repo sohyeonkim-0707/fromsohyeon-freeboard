@@ -7,7 +7,10 @@ export default function ProductItemListItem(props) {
         <S.ProductImage></S.ProductImage>
 
         <S.ProductWrapper>
-          <S.name id={props.el._id} onClick={props.onClickMoveToProduct}>
+          <S.name
+            id={props.el._id}
+            onClick={props.onClickMoveToProduct(props.el)}
+          >
             {props.el?.name}
           </S.name>
           <S.remarks>{props.el?.remarks}</S.remarks>

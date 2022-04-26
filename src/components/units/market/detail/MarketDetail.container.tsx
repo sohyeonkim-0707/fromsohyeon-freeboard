@@ -30,13 +30,23 @@ export default function MarKetDetail() {
       alert(error.message);
     }
   };
-  // 📌 장바구니
+
+  // 📌 목록으로 이동
+  const onClickMoveToProductList = () => {
+    router.push("/market");
+  };
+
+  // 📌 구매하기
+  // const onClickMoveToBuyProduct = async () => {
+  //   router.push("/market")
+  // }
 
   return (
     <MarKetDetailUI
       data={data}
       onClickMoveToProductEdit={onClickMoveToProductEdit}
       onClickDeleteProduct={onClickDeleteProduct}
+      onClickMoveToProductList={onClickMoveToProductList}
     />
   );
 }

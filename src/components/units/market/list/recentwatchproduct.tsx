@@ -14,23 +14,18 @@ const Title = styled.div`
   margin-top: 20px;
 `;
 
-export default function RecentWatchBox(props) {
+export default function RecentWatchBox() {
   const [basketItems, setBasketItmes] = useState([]);
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("baskets")) || [];
     setBasketItmes(items);
   }, []);
-
   return (
     <div>
       <Wrapper>
         <Title>오늘 본 상품</Title>
         {basketItems?.map((el: any) => (
           <div key={el._id}>
-            <div>
-              <img src="/images/heart.png" />
-              <div>{el.pickedCount}</div>
-            </div>
             <div>
               <div></div>
             </div>

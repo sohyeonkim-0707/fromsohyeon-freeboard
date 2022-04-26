@@ -1,4 +1,5 @@
 import ProductItemListItem from "./MarketList.presenteritem";
+import RecentWatchBox from "./recentwatchproduct";
 import { Scroll } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import styled from "@emotion/styled";
@@ -8,6 +9,10 @@ const Wrapper = styled.div`
   height: 730px;
   border: 1px solid red;
   margin: 20px auto;
+`;
+const ProductWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const ProductButton = styled.button`
@@ -25,7 +30,7 @@ export default function MarketListUI(props) {
   if (!props.data) return <div />;
 
   return (
-    <div>
+    <ProductWrapper>
       <Wrapper>
         <Scroll>
           <InfiniteScroll
@@ -47,6 +52,8 @@ export default function MarketListUI(props) {
           상품 등록하기
         </ProductButton>
       </Wrapper>
-    </div>
+      {/* 오늘본상품 */}
+      <RecentWatchBox />
+    </ProductWrapper>
   );
 }

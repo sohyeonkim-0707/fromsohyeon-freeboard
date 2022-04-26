@@ -6,12 +6,14 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queris";
 import ProductWriteUI from "./MarketWrite.presenter";
 import { IMarketWriteProps } from "./MarketWrite.types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useState } from "react";
 // import { Modal } from "antd";
 
 export default function MarketWrite(props: IMarketWriteProps) {
   const router = useRouter();
+  const [myLat, setMyLat] = useState("");
+  const [myLng, setMyLng] = useState("");
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -29,7 +31,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
     setFileUrls(newFileUrls);
   };
 
-  // 📌 웹 에디터 onChange
+  // 📌 웹 에디터 react-quill
   const onChangeContents = (value: any) => {
     console.log(value);
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -41,7 +43,13 @@ export default function MarketWrite(props: IMarketWriteProps) {
     try {
       const result = await createUseditem({
         variables: {
-          createUseditemInput: { ...data },
+          createUseditemInput: {
+            ...data,
+            useditemAddress: {
+              lat: myLat,
+              lng: myLng,
+            },
+          },
         },
       });
       console.log("등록", data); // test
@@ -69,6 +77,8 @@ export default function MarketWrite(props: IMarketWriteProps) {
       console.log(error.message);
     }
   };
+
+  // 지도
 
   return (
     <ProductWriteUI

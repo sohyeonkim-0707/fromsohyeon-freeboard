@@ -1,11 +1,26 @@
 import MarketListUI from "./MarketList.presenter";
+
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_USED_ITEMS } from "./MarketList.queries";
+import { useEffect, useState } from "react";
 
 export default function MarketList() {
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, {});
+  // const [isToday, setIsToday] = useState([]);
+
+  // // 날짜 함수
+  // const getDate = new Date();
+  // const yyyy = getDate.getFullYear();
+  // const mm = getDate.getMonth() + 1;
+  // const dd = getDate.getDay();
+  // const today = `${yyyy}-${mm}-${dd}`;
+
+  // useEffect(() => {
+  //   const todayProduct = JSON.parse(localStorage.getItem(today) || "[]");
+  //   setIsToday(todayProduct);
+  // }, []);
 
   // 📌  무한스크롤
   const onLoadMore = () => {
@@ -28,10 +43,28 @@ export default function MarketList() {
     });
   };
 
-  // 📌 해당 상품으로 이동
-  const onClickMoveToProduct = (event) => {
-    // alert(event.target.id); 값나오는지 찍어보기
-    router.push(`/market/${event.target.id}`);
+  // 📌 해당 상품으로 이동 & 오늘 본 상품
+  const onClickMoveToProduct = (el) => (event) => {
+    router.push(`/market/${event.currentTarget.id}`);
+
+    // 로컬에 이미 있는 값인지 체크
+    const baskets = JSON.parse(localStorage.getItem("baskets")) || [];
+    let isExists = false;
+    baskets.forEach((basketEl) => {
+      if (el._id === basketEl._id) isExists = true;
+    });
+
+    if (isExists) {
+      return;
+    }
+    // 얕은 복사를 해서 넣어주기, 최근 본 상품 3개까지만 넣어줄 것이기 때문에 shift() 이용해서 3개 이상 추가되면 끝에 값을 빼고 새 값을 넣ㄴ
+    const newEl = { ...el };
+    delete newEl.__typename;
+    baskets.push(newEl);
+    if (baskets.length > 3) {
+      baskets.shift();
+    }
+    localStorage.setItem("baskets", JSON.stringify(baskets));
   };
 
   // 📌 상품등록하기
@@ -45,6 +78,8 @@ export default function MarketList() {
       onLoadMore={onLoadMore}
       onClickMovetoNewProduct={onClickMovetoNewProduct}
       onClickMoveToProduct={onClickMoveToProduct}
+      // onClickBasket={onClickBasket} // 장바구니
+      // isToday={isToday} // 오늘 본 상품
     />
   );
 }
