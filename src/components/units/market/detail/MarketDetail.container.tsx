@@ -41,12 +41,33 @@ export default function MarKetDetail() {
   //   router.push("/market")
   // }
 
+  // 📌 장바구니로 이동 및 담기
+  const onClickBasket = (el) => () => {
+    // router.push("/mycart");
+    console.log(el);
+    // 1. 기존 장바구니 가져오기
+    // const baskets = JSON.parse(localStorage.getItem("baskets") || "[]"); // 지난번까지 담았던 장바구니
+
+    // // 2. 이미 담겼는지 확인하기
+    // const temp = baskets.filter((basketEl) => basketEl._id === el._id); // temp 임시로 담아놓는다
+    // if (temp.length === 1) {
+    //   alert("이미 당신 물품입니다!!!");
+    //   return; // 반환하면서 이 함수를 종료
+    // }
+
+    // // 3. 장바구니에 담기
+    // const { __typename, ...newEl } = el;
+    // baskets.push(newEl);
+    // localStorage.setItem("baskets", JSON.stringify(baskets));
+  };
+
   return (
     <MarKetDetailUI
       data={data}
       onClickMoveToProductEdit={onClickMoveToProductEdit}
       onClickDeleteProduct={onClickDeleteProduct}
       onClickMoveToProductList={onClickMoveToProductList}
+      onClickBasket={onClickBasket}
     />
   );
 }

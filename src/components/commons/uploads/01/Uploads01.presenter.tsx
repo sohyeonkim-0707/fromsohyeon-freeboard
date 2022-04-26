@@ -4,6 +4,7 @@ import {
   UploadImage,
 } from "./Uploads01.styles";
 import { IUploads01UIProps } from "./Uploads01.types";
+import styled from "@emotion/styled";
 
 export default function Uploads01UI(props: IUploads01UIProps) {
   return (
@@ -15,8 +16,9 @@ export default function Uploads01UI(props: IUploads01UIProps) {
         />
       ) : (
         // 눈에 보이는 곳
+
         <UploadButton onClick={props.onClickUpload}>
-          <>+</>
+          {/* <>+</> */}
         </UploadButton>
       )}
       {/* 숨김 display: none */}

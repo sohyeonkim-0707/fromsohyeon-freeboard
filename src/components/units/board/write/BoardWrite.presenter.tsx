@@ -98,14 +98,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </S.InputWrapper>
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>
-          {/* {props.fileUrls.map((el, index) => (
+          {props.fileUrls.map((el, index) => (
             <Uploads01
               key={uuidv4()}
               index={index}
               fileUrl={el}
               onChangeFileUrls={props.onChangeFileUrls}
             />
-          ))} */}
+          ))}
         </S.ImageWrapper>
         <S.OptionWrapper>
           <S.Label>메인설정</S.Label>

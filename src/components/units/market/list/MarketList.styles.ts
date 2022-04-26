@@ -11,10 +11,10 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const ProductImage = styled.div`
+export const ProductImage = styled.img`
   width: 160px;
   height: 160px;
-  background: lightgray;
+  /* background: lightgray; */
 `;
 
 export const ProductWrapper = styled.div`

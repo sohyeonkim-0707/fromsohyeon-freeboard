@@ -27,4 +27,5 @@ export interface IProductWriteUIProps {
   onClickUploadProduct: () => void;
   onClcikEditProduct: () => void;
   onChangeContents: (value: string) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
 }

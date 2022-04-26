@@ -2,6 +2,7 @@ import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import * as S from "./MarketWrite.styles";
 import { IProductWriteUIProps } from "./MarketWrite.types";
 // import { IMarketWriteUIprops } from "./MarketWrite.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
   return (
@@ -89,10 +90,16 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         {/* 사진첨부 */}
 
         <S.Label>사진첨부</S.Label>
-        <Uploads01
-          {...props.register("images")}
-          onChangeFileUrls={props.onChangeFileUrls}
-        />
+        <S.PhotoWrapper>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
+        </S.PhotoWrapper>
 
         <S.EnrolledButton
           onClick={

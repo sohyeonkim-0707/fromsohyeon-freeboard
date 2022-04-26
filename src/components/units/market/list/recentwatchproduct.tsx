@@ -1,3 +1,4 @@
+// 오늘 본 상품
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 
@@ -14,6 +15,11 @@ const Title = styled.div`
   margin-top: 20px;
 `;
 
+const ProductImage = styled.img`
+  width: 60px;
+  height: 60px;
+`;
+
 export default function RecentWatchBox() {
   const [basketItems, setBasketItmes] = useState([]);
   useEffect(() => {
@@ -27,7 +33,14 @@ export default function RecentWatchBox() {
         {basketItems?.map((el: any) => (
           <div key={el._id}>
             <div>
-              <div></div>
+              {el.images[0] ? (
+                <ProductImage
+                  src={`https://storage.googleapis.com/${el.images[0]}`}
+                  alt="상품이미지"
+                />
+              ) : (
+                <ProductImage src="/images/images.png" />
+              )}
             </div>
             <div>{el.name}</div>
             <div>{el.remarks}</div>

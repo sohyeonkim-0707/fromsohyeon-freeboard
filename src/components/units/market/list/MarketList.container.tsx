@@ -8,19 +8,6 @@ import { useEffect, useState } from "react";
 export default function MarketList() {
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, {});
-  // const [isToday, setIsToday] = useState([]);
-
-  // // 날짜 함수
-  // const getDate = new Date();
-  // const yyyy = getDate.getFullYear();
-  // const mm = getDate.getMonth() + 1;
-  // const dd = getDate.getDay();
-  // const today = `${yyyy}-${mm}-${dd}`;
-
-  // useEffect(() => {
-  //   const todayProduct = JSON.parse(localStorage.getItem(today) || "[]");
-  //   setIsToday(todayProduct);
-  // }, []);
 
   // 📌  무한스크롤
   const onLoadMore = () => {
@@ -43,7 +30,7 @@ export default function MarketList() {
     });
   };
 
-  // 📌 해당 상품으로 이동 & 오늘 본 상품
+  // 📌 해당 상품으로 이동 & 📌  오늘 본 상품
   const onClickMoveToProduct = (el) => (event) => {
     router.push(`/market/${event.currentTarget.id}`);
 
@@ -78,8 +65,6 @@ export default function MarketList() {
       onLoadMore={onLoadMore}
       onClickMovetoNewProduct={onClickMovetoNewProduct}
       onClickMoveToProduct={onClickMoveToProduct}
-      // onClickBasket={onClickBasket} // 장바구니
-      // isToday={isToday} // 오늘 본 상품
     />
   );
 }

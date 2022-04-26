@@ -12,7 +12,7 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
               {/* <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller> */}
-              <S.Seller>판매자</S.Seller>
+              <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller>
               <S.CreatedAt>
                 {getDate(props.data?.fetchUseditem?.createdAt)}
               </S.CreatedAt>
@@ -25,8 +25,9 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           </S.ProductRemarks>
           <S.ProductName>{props.data?.fetchUseditem?.name}</S.ProductName>
           <S.Price>{props.data?.fetchUseditem?.price}원</S.Price>
-          {/* <S.ImageWrapper>
-            {props.data?.fetchBoard.images
+          {/* 이미지 */}
+          <S.ImageWrapper>
+            {props.data?.fetchUseditem.images
               ?.filter((el: string) => el)
               .map((el: string) => (
                 <S.Image
@@ -34,7 +35,7 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
                   src={`https://storage.googleapis.com/${el}`}
                 />
               ))}
-          </S.ImageWrapper> */}
+          </S.ImageWrapper>
           {typeof window !== "undefined" && (
             <S.Contents
               dangerouslySetInnerHTML={{
@@ -55,7 +56,7 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
         <S.Button onClick={props.onClickMoveToProductEdit}>수정하기</S.Button>
         <S.Button onClick={props.onClickDeleteProduct}>삭제하기</S.Button>
         <S.Button>구매하기</S.Button>
-        <S.Button>장바구니 담기</S.Button>
+        <S.Button onClick={props.onClickBasket}>장바구니 담기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

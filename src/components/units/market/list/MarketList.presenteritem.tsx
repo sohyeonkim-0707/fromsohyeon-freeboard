@@ -1,10 +1,22 @@
 import * as S from "./MarketList.styles";
 
 export default function ProductItemListItem(props) {
+  // console.log("img", props.el.images); // 이미지값 찍어보기
   return (
     <div>
       <S.Wrapper>
-        <S.ProductImage></S.ProductImage>
+        {/* <S.ProductImage>{props.el?.images}</S.ProductImage> */}
+        {/* <S.ProductImage
+          src={`https://storage.googleapis.com/${props.el.images[0]}`}
+        /> */}
+        {props.el.images[0] ? (
+          <S.ProductImage
+            src={`https://storage.googleapis.com/${props.el.images[0]}`}
+            alt="상품이미지"
+          />
+        ) : (
+          <S.ProductImage src="/images/images.png" />
+        )}
 
         <S.ProductWrapper>
           <S.name

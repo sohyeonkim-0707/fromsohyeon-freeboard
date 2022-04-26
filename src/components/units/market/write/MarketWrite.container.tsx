@@ -12,8 +12,9 @@ import { useEffect, useState } from "react";
 
 export default function MarketWrite(props: IMarketWriteProps) {
   const router = useRouter();
-  const [myLat, setMyLat] = useState("");
-  const [myLng, setMyLng] = useState("");
+  const [myLat, setMyLat] = useState(""); // 위도
+  const [myLng, setMyLng] = useState(""); // 경도
+  const [fileUrls, setFileUrls] = useState(["", "", ""]); // 사진
 
   const { handleSubmit, register, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -22,14 +23,6 @@ export default function MarketWrite(props: IMarketWriteProps) {
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
-
-  const [fileUrls, setFileUrls] = useState(["", "", ""]); // 사진
-
-  const onChangeFileUrls = (fileUrl: string, index: number) => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  };
 
   // 📌 웹 에디터 react-quill
   const onChangeContents = (value: any) => {
@@ -45,18 +38,18 @@ export default function MarketWrite(props: IMarketWriteProps) {
         variables: {
           createUseditemInput: {
             ...data,
-            useditemAddress: {
-              lat: myLat,
-              lng: myLng,
-            },
+            // useditemAddress: {
+            //   lat: myLat,
+            //   lng: myLng,
+            // },
           },
         },
       });
       console.log("등록", data); // test
       alert("상품을 등록합니다.");
       router.push(`/market/${result.data.createUseditem._id}`);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
     }
   };
 
@@ -77,7 +70,18 @@ export default function MarketWrite(props: IMarketWriteProps) {
       console.log(error.message);
     }
   };
+  // 📌 이미지 업로드
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
 
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
   // 지도
 
   return (
@@ -88,6 +92,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       isActive={formState.isValid}
       isEdit={props.isEdit}
       data={props.data}
+      fileUrls={fileUrls}
       onChangeContents={onChangeContents}
       onChangeFileUrls={onChangeFileUrls}
       onClickUploadProduct={onClickUploadProduct}

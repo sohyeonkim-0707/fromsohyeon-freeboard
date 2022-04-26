@@ -80,6 +80,11 @@ export const Label = styled.div`
   margin-top: 10px;
 `;
 
+export const PhotoWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const MapImage = styled.div`
   width: 384px;
   height: 100%;

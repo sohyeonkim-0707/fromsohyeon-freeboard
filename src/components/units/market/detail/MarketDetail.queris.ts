@@ -11,7 +11,9 @@ export const FETCH_USED_ITEM = gql`
       tags
       createdAt
       images
-      # seller
+      seller {
+        name
+      }
     }
   }
 `;
