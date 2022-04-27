@@ -3,4 +3,6 @@ export interface IMarketDetailUIProps {
   onClickMoveToProductEdit: () => void;
   onClickDeleteProduct: () => void;
   onClickMoveToProductList: () => void;
+  onClickMoveToBuyProduct: () => void;
+  onClickBasket: (el: any) => () => void;
 }
