@@ -44,11 +44,15 @@ export default function LayoutHeader() {
   const onCickMoveToJoin = () => {
     router.push("/join");
   };
+  const onCickMoveToMyPage = () => {
+    router.push("/mypage");
+  };
 
   return (
     <Wrapper>
       <InnerWrapper>
         <InnerButton onClick={onCickMoveToCart}>mycart</InnerButton>
+        <InnerButton onClick={onCickMoveToMyPage}>mypage</InnerButton>
         <InnerButton onClick={onClickMoveToLogin}>login</InnerButton>
         <InnerButton onClick={onCickMoveToJoin}>join</InnerButton>
       </InnerWrapper>

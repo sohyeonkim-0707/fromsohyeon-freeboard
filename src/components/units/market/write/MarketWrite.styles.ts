@@ -164,6 +164,22 @@ export const AddressInput = styled.input`
   outline: none;
 `;
 
+export const OptionWrapper = styled.div`
+  width: 996px;
+  padding-top: 40px;
+`;
+
+export const RadioButton = styled.input`
+  cursor: pointer;
+`;
+
+export const RadioLabel = styled.label`
+  margin-left: 8px;
+  margin-right: 20px;
+  font-weight: 500;
+  cursor: pointer;
+`;
+
 export const EnrolledButton = styled.button`
   width: 179px;
   height: 52px;

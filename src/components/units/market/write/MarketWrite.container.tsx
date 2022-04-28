@@ -16,7 +16,15 @@ export default function MarketWrite(props: IMarketWriteProps) {
   const [myLng, setMyLng] = useState(""); // 경도
   const [fileUrls, setFileUrls] = useState(["", "", ""]); // 사진
 
-  const { handleSubmit, register, formState, setValue, trigger } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState,
+    setValue,
+    trigger,
+    getValues,
+    reset,
+  } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
@@ -38,6 +46,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
         variables: {
           createUseditemInput: {
             ...data,
+            images: fileUrls,
             // useditemAddress: {
             //   lat: myLat,
             //   lng: myLng,
@@ -89,6 +98,8 @@ export default function MarketWrite(props: IMarketWriteProps) {
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
+      getValues={getValues}
+      reset={reset}
       isActive={formState.isValid}
       isEdit={props.isEdit}
       data={props.data}

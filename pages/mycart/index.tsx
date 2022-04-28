@@ -1,6 +1,7 @@
 // 장바구니 보여주기
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Wrapper = styled.div`
   width: 1200px;
@@ -95,7 +96,7 @@ export default function MyCartPage() {
           </MyRow>
 
           {myBasketItems.map((el: any) => (
-            <MyRow key={el._id}>
+            <MyRow key={uuidv4()}>
               <MyColumn>
                 {String(el.fetchUseditem._id).slice(-4).toUpperCase()}
               </MyColumn>

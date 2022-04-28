@@ -3,6 +3,7 @@ import RecentWatchBox from "./recentwatchproduct";
 import { Scroll } from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import styled from "@emotion/styled";
+// import { v4 as uuidv4 } from "uuid"; 403 에러 남
 
 const Wrapper = styled.div`
   width: 1300px;

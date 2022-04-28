@@ -3,8 +3,12 @@ import * as S from "./MarketWrite.styles";
 import { IProductWriteUIProps } from "./MarketWrite.types";
 // import { IMarketWriteUIprops } from "./MarketWrite.types";
 import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
+  useEffect(() => {
+    props.reset({ contents: props.data?.fetchUseditem.contents });
+  }, [props.data]);
   return (
     <S.Wrapper>
       <S.MainTitle>
@@ -42,7 +46,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           // {...props.register("contents")}
           onChange={props.onChangeContents}
           placeholder="상품설명을 작성해주세요."
-          defaultValue={props.data?.fetchUseditem.contents}
+          value={props.getValues("contents") || ""}
         />
         <S.Error>{props.formState.errors.contents?.message}</S.Error>
 
@@ -100,7 +104,13 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
             />
           ))}
         </S.PhotoWrapper>
-
+        <S.OptionWrapper>
+          <S.Label>메인 사진 설정</S.Label>
+          <S.RadioButton type="radio" id="image1" name="radio-button" />
+          <S.RadioLabel htmlFor="image1">사진 1</S.RadioLabel>
+          <S.RadioButton type="radio" id="image2" name="radio-button" />
+          <S.RadioLabel htmlFor="image2">사진 2</S.RadioLabel>
+        </S.OptionWrapper>
         <S.EnrolledButton
           onClick={
             props.isEdit ? props.onClcikEditProduct : props.onClickUploadProduct

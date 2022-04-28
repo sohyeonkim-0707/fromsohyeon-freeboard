@@ -31,7 +31,6 @@ const NAVI_MENU = [
   { name: "COMUNNITY", page: "/boards" },
   { name: "MARKET", page: "/market/new" },
   { name: "MARKETLIST", page: "/market" },
-  { name: "MYPAGE", page: "/mypage" },
 ];
 
 export default function LayoutNavigation() {

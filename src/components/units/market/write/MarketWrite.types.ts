@@ -22,6 +22,12 @@ export interface IEnrolledButton {
 }
 
 export interface IProductWriteUIProps {
+  handleSubmit: any;
+  register: any;
+  getValues: string;
+  formState: any;
+  fileUrls: any;
+  reset: any;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchUseditem">;
   onClickUploadProduct: () => void;
