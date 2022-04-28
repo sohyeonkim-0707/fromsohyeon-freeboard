@@ -25,6 +25,13 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           </S.ProductRemarks>
           <S.ProductName>{props.data?.fetchUseditem?.name}</S.ProductName>
           <S.Price>{props.data?.fetchUseditem?.price}원</S.Price>
+          {/* 📌 찜하기 */}
+          {props.isWishAdd ? (
+            <div onClick={props.wishCountHandler}>🧡</div>
+          ) : (
+            <div onClick={props.wishAddHandler}>🤍</div>
+          )}
+          <div>{props.data?.fetchUseditem?.pickedCount}</div>
           {/* 이미지 나와라 제발 킹받게 하지말고 짱나니까  */}
           <S.ImageWrapper>
             {props.data?.fetchUseditem?.images

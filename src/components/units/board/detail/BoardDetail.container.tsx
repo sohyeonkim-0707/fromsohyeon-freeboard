@@ -53,12 +53,12 @@ export default function BoardDetail() {
     // router.push("/boards");
   };
 
-  // 수정하기 페이지로 이동
+  // 📌 수정하기 페이지로 이동
   const onClickMoveToBoardEdit = () => {
     router.push(`/boards/${router.query.boardId}/edit`);
   };
 
-  // 삭제하기 mutation ========================
+  // 📌 삭제하기
   const onClickDelete = async () => {
     try {
       await deleteBoard({
@@ -72,7 +72,7 @@ export default function BoardDetail() {
     }
   };
 
-  // 좋아요 mutation 요청하기  ========================
+  // 📌 좋아요 mutation
   const onClickLike = () => {
     likeBoard({
       variables: { boardId: String(router.query.boardId) },
@@ -82,7 +82,8 @@ export default function BoardDetail() {
       ],
     });
   };
-  // 싫어요 mutation 요청하기 ========================
+
+  // 📌 싫어요 mutation
   const onClickDislike = () => {
     dislikeBoard({
       variables: { boardId: String(router.query.boardId) },

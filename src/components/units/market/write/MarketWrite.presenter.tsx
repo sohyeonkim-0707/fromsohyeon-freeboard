@@ -6,6 +6,16 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
+  // const [hashArr, setHashArr] = useState([]);
+
+  // 📌 해시태그함수
+  // const onKeyUpHash = (event) => {
+  //   if (event.keyCode === 32 && event.target.value !== " ") {
+  //     setHashArr([...hashArr, "#" + event.target.value]);
+  //     event.target.value = "";
+  //   }
+  // };
+
   useEffect(() => {
     props.reset({ contents: props.data?.fetchUseditem.contents });
   }, [props.data]);
@@ -64,6 +74,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           type="text"
           {...props.register("tags")}
           placeholder="#태그 #태그 #태그"
+          // onKeyUp={onKeyUpHash}
           defaultValue={props.data?.fetchUseditem.tags}
         />
         <S.Error>{props.formState.errors.tags?.message}</S.Error>

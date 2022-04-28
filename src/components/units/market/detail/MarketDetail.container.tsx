@@ -5,7 +5,9 @@ import {
   FETCH_USED_ITEM,
   DELETE_USED_ITEM,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  TOGGLE_USED_ITEM_PICK,
 } from "./MarketDetail.queris";
+import { useState } from "react";
 
 export default function MarKetDetail() {
   const router = useRouter();
@@ -14,11 +16,15 @@ export default function MarKetDetail() {
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
   );
+  const [isWishAdd, setIsWishAdd] = useState(false);
 
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: String(router.query.productId) },
   });
   // console.log("tya", router.query.productId);
+
+  // 🧡 찜하기 mutation
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   // 📌 수정하기 페이지로 이동
   const onClickMoveToProductEdit = () => {
@@ -73,6 +79,25 @@ export default function MarKetDetail() {
     }
   };
 
+  // 🧡 찜하기 버튼 누를 때마다 boolean 값이 변경
+  const wishAddHandler = () => {
+    setIsWishAdd(!isWishAdd);
+    alert("찜 되었습니다.");
+  };
+
+  // 📌  찜하기 함수
+  const wishCountHandler = () => {
+    toggleUseditemPick({
+      variables: { useditemId: router.query.productId },
+      refetchQueries: [
+        {
+          query: FETCH_USED_ITEM,
+          variables: { useditemId: router.query.productId },
+        },
+      ],
+    });
+  };
+
   return (
     <MarKetDetailUI
       data={data}
@@ -81,6 +106,9 @@ export default function MarKetDetail() {
       onClickMoveToProductList={onClickMoveToProductList}
       onClickBasket={onClickBasket}
       onClickMoveToBuyProduct={onClickMoveToBuyProduct}
+      wishCountHandler={wishCountHandler}
+      wishAddHandler={wishAddHandler}
+      isWishAdd={isWishAdd}
     />
   );
 }
