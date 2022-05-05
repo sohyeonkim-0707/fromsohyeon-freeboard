@@ -4,23 +4,26 @@ import { IProductWriteUIProps } from "./MarketWrite.types";
 // import { IMarketWriteUIprops } from "./MarketWrite.types";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
+import { Modal, Button } from "antd";
+import DaumPostcode from "react-daum-postcode";
+import KakaoMapPage from "../../../commons/kakaomap/kakaomap.container";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
-  // const [hashArr, setHashArr] = useState([]);
-
-  // 📌 해시태그함수
-  // const onKeyUpHash = (event) => {
-  //   if (event.keyCode === 32 && event.target.value !== " ") {
-  //     setHashArr([...hashArr, "#" + event.target.value]);
-  //     event.target.value = "";
-  //   }
-  // };
-
   useEffect(() => {
     props.reset({ contents: props.data?.fetchUseditem.contents });
   }, [props.data]);
   return (
     <S.Wrapper>
+      {/* 다음주소모달 */}
+      {props.isOpen && (
+        <Modal
+          visible={true}
+          onOk={props.handleOk}
+          onCancel={props.handleCancel}
+        >
+          <DaumPostcode onComplete={props.handleComplete} />
+        </Modal>
+      )}
       <S.MainTitle>
         {props.isEdit ? "상품 수정하기" : "상품 등록하기"}
       </S.MainTitle>
@@ -70,11 +73,17 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         <S.Error>{props.formState.errors.price?.message}</S.Error>
 
         <S.Title>태그입력</S.Title>
+        <span>
+          {props.hashArr.map((el, index) => (
+            <span key={index}>{el}</span>
+          ))}
+        </span>
+
         <S.InputText
           type="text"
           {...props.register("tags")}
           placeholder="#태그 #태그 #태그"
-          // onKeyUp={onKeyUpHash}
+          onKeyUp={props.onKeyUpHashTag}
           defaultValue={props.data?.fetchUseditem.tags}
         />
         <S.Error>{props.formState.errors.tags?.message}</S.Error>
@@ -82,23 +91,70 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         <S.MapWrapper>
           <S.MapImage>
             <S.Location>거래위치</S.Location>
-            <S.KakaoMap>지도</S.KakaoMap>
+            <KakaoMapPage
+              address={props.address}
+              zipcode={props.zipcode}
+              onChangeAddressDetail={props.onChangeAddressDetail}
+            />
           </S.MapImage>
 
           <S.InputMap>
             <S.GpasWrapper>
-              <S.GpsTitle>GPS</S.GpsTitle>
+              <S.GpsTitle></S.GpsTitle>
               <S.GpsInput>
-                <input type="text" placeholder="위도(LAT)"></input>
-                <div> o </div>
-                <input type="text" placeholder="경도(LAT)"></input>
+                {/* <input
+                  type="text"
+                  id="zipcode"
+                  placeholder="07250"
+                  value={props.zipcode}
+                  readOnly
+                ></input> */}
+                <input
+                  placeholder="07250"
+                  readOnly
+                  value={
+                    props.zipcode ||
+                    props.data?.fetchUseditem.useditemAddress?.zipcode ||
+                    ""
+                  }
+                ></input>
+                {/* <div> 📍 </div> */}
+                <Button
+                  style={{
+                    color: "white",
+                    width: "124px",
+                    height: "51px",
+                    background: "#000000",
+                    marginLeft: "20px",
+                    marginBottom: "20px",
+                  }}
+                  onClick={props.showModal}
+                >
+                  우편번호 검색
+                </Button>
               </S.GpsInput>
             </S.GpasWrapper>
 
             <S.AddressWrapper>
               <S.AddressTitle> 주소</S.AddressTitle>
-              <S.AddressInput type="text"></S.AddressInput>
-              <S.AddressInput type="text"></S.AddressInput>
+              <S.AddressInput
+                type="text"
+                id="address"
+                readOnly
+                value={
+                  props.address ||
+                  props.data?.fetchUseditem.useditemAddress?.address ||
+                  ""
+                }
+              ></S.AddressInput>
+              <S.AddressInput
+                type="text"
+                id="addressDetail"
+                onChange={props.onChangeAddressDetail}
+                defaultValue={
+                  props.data?.fetchUseditem.useditemAddress?.addressDetail || ""
+                }
+              ></S.AddressInput>
             </S.AddressWrapper>
           </S.InputMap>
         </S.MapWrapper>

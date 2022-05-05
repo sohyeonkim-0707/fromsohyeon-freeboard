@@ -74,6 +74,25 @@ export const Price = styled.h1`
   font-size: 36px;
 `;
 
+export const Wish = styled.div`
+  width: 120px;
+  height: 30px;
+  font-size: 20px;
+  background: orange;
+  text-indent: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  :hover {
+    color: white;
+  }
+`;
+
+export const Wish2 = styled.b`
+  width: 30%;
+  height: 30px;
+  margin-left: 30px;
+`;
+
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
@@ -93,7 +112,7 @@ export const line = styled.div`
 export const map = styled.div`
   width: 792px;
   height: 360px;
-  background: lightgray;
+  border: 1px solid lightgray;
   margin: 50px auto;
 `;
 export const BottomWrapper = styled.div`

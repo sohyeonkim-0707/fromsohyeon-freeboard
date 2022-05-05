@@ -118,15 +118,12 @@ function MyPage() {
           // 결제 성공 시 로직,
           // rsp 에 뭐가 들어오는지 확인
           console.log(rsp);
-
           // 백엔드에 결제 관련 데이터 넘겨주기(즉, mutation 실행하기)
           // ex. createPointTransactionOfLoading
-
           const result = createPointTransactionOfLoading({
             variables: { impUid: rsp.imp_uid },
           });
           console.log("결제", result);
-
           alert("결제에 성공했습니다.");
         } else {
           // 결제 실패 시 로직,
@@ -135,7 +132,6 @@ function MyPage() {
       }
     );
   };
-
   return (
     <Wrapper>
       <Title> {data?.fetchUserLoggedIn?.name}님의 Mypage 입니다.</Title>
@@ -143,7 +139,6 @@ function MyPage() {
         현재 포인트는
         {data?.fetchUserLoggedIn?.userPoint?.amount}원 입니다.
       </Title>
-
       <div>
         <Head>
           {/* <!-- jQuery --> */}
@@ -157,7 +152,6 @@ function MyPage() {
             src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
           ></script>
         </Head>
-
         <PointWrapper>
           <SelectPoint onChange={onChanageSubmit}>
             <option value="500">500원</option>
@@ -172,5 +166,4 @@ function MyPage() {
     </Wrapper>
   );
 }
-
 export default MyPage;

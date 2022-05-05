@@ -1,4 +1,4 @@
-// 상품 유효성 검증
+// 📌 상품 유효성 검증
 import * as yup from "yup";
 export const schema = yup.object().shape({
   name: yup

@@ -18,13 +18,13 @@ export default function MarKetDetail() {
   );
   const [isWishAdd, setIsWishAdd] = useState(false);
 
-  const { data } = useQuery(FETCH_USED_ITEM, {
+  const { data, refetch } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: String(router.query.productId) },
   });
   // console.log("tya", router.query.productId);
 
-  // 🧡 찜하기 mutation
-  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
+  // 📌 찜하기 mutation
+  const [toggleUsedItemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   // 📌 수정하기 페이지로 이동
   const onClickMoveToProductEdit = () => {
@@ -79,23 +79,24 @@ export default function MarKetDetail() {
     }
   };
 
-  // 🧡 찜하기 버튼 누를 때마다 boolean 값이 변경
+  // 📌 찜하기 버튼 누를 때마다 boolean 값 변경
   const wishAddHandler = () => {
-    setIsWishAdd(!isWishAdd);
-    alert("찜 되었습니다.");
+    if (!isWishAdd) {
+      setIsWishAdd(!isWishAdd);
+      alert("찜 되었습니다.");
+    }
   };
 
-  // 📌  찜하기 함수
-  const wishCountHandler = () => {
-    toggleUseditemPick({
-      variables: { useditemId: router.query.productId },
-      refetchQueries: [
-        {
-          query: FETCH_USED_ITEM,
-          variables: { useditemId: router.query.productId },
-        },
-      ],
-    });
+  // 📌 찜하기
+  const wishCountHandler = async () => {
+    try {
+      await toggleUsedItemPick({
+        variables: { useditemId: String(router.query.productId) },
+      });
+      refetch();
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

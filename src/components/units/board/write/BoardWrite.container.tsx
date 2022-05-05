@@ -125,7 +125,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setFileUrls(newFileUrls);
   };
 
-  // 📌 등록하기 !!!  ====================
+  // 📌 등록하기 !!!
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");
@@ -169,7 +169,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  // 수정하기 ====================
+  // 📌 수정하기
   const onClickUpdate = async () => {
     const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data.fetchBoard.images);

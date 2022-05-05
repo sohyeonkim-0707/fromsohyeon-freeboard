@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 const Wrapper = styled.div`
   width: 1300px;
   height: 730px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 20px auto;
 `;
 const ProductWrapper = styled.div`

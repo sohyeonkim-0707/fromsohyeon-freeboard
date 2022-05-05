@@ -12,6 +12,16 @@ const FETCH_USED_ITEM = gql`
       contents
       price
       tags
+      createdAt
+      images
+      pickedCount
+      useditemAddress {
+        address
+        addressDetail
+      }
+      seller {
+        name
+      }
     }
   }
 `;

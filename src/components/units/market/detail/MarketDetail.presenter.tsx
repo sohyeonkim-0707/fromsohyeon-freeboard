@@ -2,6 +2,7 @@ import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./MarketDetail.styles";
 import { IMarketDetailUIProps } from "./MarketDetail.types";
 import Dompurify from "dompurify";
+import KakaoMapFetchPage from "../../../commons/kakaoMapFetch/kakaomap.container";
 
 export default function MarKetDetailUI(props: IMarketDetailUIProps) {
   return (
@@ -26,13 +27,13 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
           <S.ProductName>{props.data?.fetchUseditem?.name}</S.ProductName>
           <S.Price>{props.data?.fetchUseditem?.price}원</S.Price>
           {/* 📌 찜하기 */}
-          {props.isWishAdd ? (
-            <div onClick={props.wishCountHandler}>🧡</div>
-          ) : (
-            <div onClick={props.wishAddHandler}>🤍</div>
-          )}
-          <div>{props.data?.fetchUseditem?.pickedCount}</div>
-          {/* 이미지 나와라 제발 킹받게 하지말고 짱나니까  */}
+
+          <S.Wish onClick={props.wishCountHandler}>
+            찜하기{props.data?.fetchUseditem?.pickedCount}
+          </S.Wish>
+
+          <div></div>
+
           <S.ImageWrapper>
             {props.data?.fetchUseditem?.images
               ?.filter((el: string) => el)
@@ -51,10 +52,13 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
             ></S.Contents>
           )}
 
-          {/* <S.Contents>{props.data?.fetchUseditem?.contents}</S.Contents> */}
-          <S.Tag>{props.data?.fetchUseditem?.tags}</S.Tag>
+          {/* 📌 해시태그 */}
+          <S.Tag>{props.data?.fetchUseditem?.tags} </S.Tag>
+
           <S.line></S.line>
-          <S.map>지도</S.map>
+          {/* 지도 */}
+          <KakaoMapFetchPage data={props.data} />
+
           <S.line></S.line>
         </S.Body>
       </S.CardWrapper>
