@@ -5,10 +5,10 @@ import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 // presenterItem 부분
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1300px;
   display: flex;
   flex-direction: column;
-  /* margin: 10px auto; */
+  margin: 10px auto;
   padding: 0px 100px;
 `;
 
@@ -51,6 +51,7 @@ export const AnswerButton = styled.button`
   background: #ffd600;
   border: none;
   cursor: pointer;
+  margin-right: 20px;
 `;
 
 export const CommentContents = styled.div`
@@ -66,7 +67,7 @@ export const CommentCreatedAt = styled.div`
 // 수정하기 삭제하기 버튼
 // export const UpdateIcon = styled.img``;
 export const EditIcon = styled(EditOutlined)`
-  margin-right: 10px;
+  margin-right: 2px;
   cursor: pointer;
   color: gray;
 `;

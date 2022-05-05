@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   width: 1300px;
   height: 730px;
   /* border: 1px solid red; */
-  margin: 20px auto;
+  margin: 50px auto;
 `;
 const ProductWrapper = styled.div`
   display: flex;
@@ -20,11 +20,13 @@ const ProductButton = styled.button`
   width: 124px;
   height: 52px;
   background: #ffffff;
-  border: 1px solid #bdbdbd;
+  border: none;
   margin-top: 40px;
+  margin-left: 45px;
   font-weight: 500;
   font-size: 16px;
   cursor: pointer;
+  background: #ffe004;
 `;
 
 export default function MarketListUI(props) {

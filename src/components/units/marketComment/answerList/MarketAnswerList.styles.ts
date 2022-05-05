@@ -5,7 +5,8 @@ export const Wrapper = styled.div`
   width: 1100px;
   display: flex;
   flex-direction: column;
-  margin: 10px auto;
+  margin-top: 10px;
+  /* margin-left:40px;z */
   padding: 0px 100px;
 `;
 // 리스트 부분

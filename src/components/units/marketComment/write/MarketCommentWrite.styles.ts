@@ -3,11 +3,12 @@ import { FormOutlined } from "@ant-design/icons";
 
 // 전체
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1300px;
   display: flex;
   flex-direction: column;
-  /* margin: 30px auto; */
+  margin: 30px auto;
   padding: 0px 100px;
+  /* border: 1px solid red; */
 `;
 
 // 헤더 부분

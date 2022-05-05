@@ -56,16 +56,19 @@ export default function MarKetDetail() {
     const mybaskets = JSON.parse(localStorage.getItem("mybaskets") || "[]"); // 지난번까지 담았던 장바구니
 
     // 2. 이미 담겼는지 확인하기
-    // const temp = mybaskets.filter((basketEl: any) => basketEl._id === el._id); // temp 임시로 담아놓는다
-    // if (temp.length === 1) {
-    //   alert("이미 장바구니에 담겨 있습니다!");
-    //   return;
-    // }
+    const temp = mybaskets.filter(
+      (basketEl: any) => basketEl.fetchUseditem._id === el.fetchUseditem._id
+    ); // temp 임시로 담아놓는다
+    if (temp.length === 1) {
+      alert("이미 장바구니에 담겨 있습니다!");
+      return;
+    }
 
     // 3. 장바구니에 담기
     const { __typename, ...newEl } = el;
     mybaskets.push(newEl);
     localStorage.setItem("mybaskets", JSON.stringify(mybaskets));
+    alert("장바구니에 담겼습니다.");
   };
 
   // 📌 구매하기

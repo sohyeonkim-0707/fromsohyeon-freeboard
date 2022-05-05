@@ -57,7 +57,9 @@ export default function MarKetDetailUI(props: IMarketDetailUIProps) {
 
           <S.line></S.line>
           {/* 지도 */}
-          <KakaoMapFetchPage data={props.data} />
+          <div>
+            <KakaoMapFetchPage data={props.data} />
+          </div>
 
           <S.line></S.line>
         </S.Body>

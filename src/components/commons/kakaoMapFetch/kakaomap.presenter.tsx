@@ -2,9 +2,8 @@ import styled from "@emotion/styled";
 
 const BlockLo = styled.div`
   display: flex;
-
   width: 900px;
-  margin-left: 20px;
+  margin: 100px auto;
 `;
 
 export default function KakaoMapFetchUI(props) {

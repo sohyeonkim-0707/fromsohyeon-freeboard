@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: 30px auto;
   padding: 0px 100px;
+  /* margin-left: 20px; */
 `;
 
 // 인풋

@@ -31,7 +31,7 @@ export const Price = styled.div`
   font-size: 20px;
   text-align: center;
   line-height: 160px;
-  border: 1px solid green;
+  background: #ffe004;
 `;
 
 export const name = styled.div`
@@ -70,7 +70,7 @@ export const Likebutton = styled.div`
   color: #4f4f4f;
 `;
 export const Scroll = styled.div`
-  height: 700px;
+  height: 800px;
   width: 1300px;
   overflow: auto;
 `;
