@@ -95,6 +95,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
               address={props.address}
               zipcode={props.zipcode}
               onChangeAddressDetail={props.onChangeAddressDetail}
+              data={props.data}
             />
           </S.MapImage>
 
