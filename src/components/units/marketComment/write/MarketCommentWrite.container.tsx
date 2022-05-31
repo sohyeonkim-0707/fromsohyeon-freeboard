@@ -1,17 +1,18 @@
-import { useMutation } from "@apollo/client";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import MarketCommentWriteUI from "./MarketCommentWrite.presenter";
-import { CREATE_USED_ITEM_QUESTION } from "./MarketCommentWrite.queries";
-import * as yup from "yup";
-import { Modal } from "antd";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "antd";
+import { useEffect } from "react";
+import { CREATE_USED_ITEM_QUESTION } from "./MarketCommentWrite.queries";
 import {
   FETCH_USED_ITEM_QUESTIONS,
   UPDATE_USED_ITEM_QUESTION,
 } from "../list/MarketCommentList.queries";
-import { useEffect } from "react";
 
+// yup
 const schema = yup.object({
   contents: yup
     .string()
@@ -27,12 +28,14 @@ const MarketCommentWrite = (props) => {
   const { register, handleSubmit, formState, watch, setValue, reset } = useForm(
     {
       resolver: yupResolver(schema),
-      mode: "onChange",
+      mode: "onChange", // 실시간 유효성 검사
     }
   );
 
+  // watch 함수를 사용하면 다음과 유저가 입력하는 값을 실시간으로 보여준다.
   const contentsLength = watch().contents?.length;
 
+  // 📌 댓글 등록하기
   const onClickComment = async (data) => {
     try {
       await createUseditemQuestion({
@@ -56,7 +59,8 @@ const MarketCommentWrite = (props) => {
         Modal.error({ content: "댓글이 등록되지 않았습니다." });
     }
   };
-  // 수정하기
+
+  // 📌 댓글 수정하기
   const onClickUpdateComment = async (data) => {
     try {
       if (!props.el?._id) return;
@@ -81,6 +85,7 @@ const MarketCommentWrite = (props) => {
       Modal.error({ content: "수정되지 않았습니다." });
     }
   };
+
   useEffect(() => {
     reset({
       contents: props.data?.fetchUseditem.contents,

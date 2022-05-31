@@ -1,23 +1,26 @@
-import { useMutation } from "@apollo/client";
-import { Modal } from "antd";
-import { useState } from "react";
-import { getDate } from "../../../../commons/libraries/utils";
 import MarketCommentAnswer from "../answer/MarketAnswer.container";
+import * as S from "./MarketAnswerList.styles";
+import { Modal } from "antd";
+import { getDate } from "../../../../commons/libraries/utils";
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
 import {
   DELETE_USED_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEM_QUESTION_ANSWERS,
 } from "./MarketAnswerList.queries";
-import * as S from "./MarketAnswerList.styles";
 
 export default function AnswerListItemUI(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [deleteUseditemQuestionAnswer] = useMutation(
     DELETE_USED_ITEM_QUESTION_ANSWER
   );
+
+  // 📌 답글 수정하기
   const onClickUpdateAnswer = () => {
     setIsEdit((prev) => !prev);
   };
 
+  // 📌 답글 삭제하기
   const onClickDeleteAnswer = async (event) => {
     try {
       await deleteUseditemQuestionAnswer({
@@ -45,10 +48,8 @@ export default function AnswerListItemUI(props) {
               <div>
                 <S.EditIcon onClick={onClickUpdateAnswer}>
                   <S.EditIcon />
-                  {/* <S.UpdateIcon src="/images/update.png" /> */}
                 </S.EditIcon>
                 <S.DeleteIcon id={props.id} onClick={onClickDeleteAnswer}>
-                  {/* <S.DeleteIcon src="/images/delete.png" /> */}
                   <S.DeleteIcon />
                 </S.DeleteIcon>
               </div>
@@ -60,6 +61,7 @@ export default function AnswerListItemUI(props) {
           </S.CommentContentsBox>
         </S.CommentFetchWrapper>
       )}
+      {/* 답글등록하기 반복 */}
       {isEdit && (
         <MarketCommentAnswer
           isEdit={true}

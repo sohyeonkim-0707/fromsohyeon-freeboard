@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
 import AnswerListUI from "./MarketAnswerList.presenter";
+import { useQuery } from "@apollo/client";
 import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "./MarketAnswerList.queries";
 
 export default function AnswerList(props) {

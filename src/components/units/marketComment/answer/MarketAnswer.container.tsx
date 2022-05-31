@@ -1,8 +1,8 @@
-import { useMutation } from "@apollo/client";
+import MarketCommentAnswerUI from "./MarketAnswer.presenter";
 import { Modal } from "antd";
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "../answerList/MarketAnswerList.queries";
-import MarketCommentAnswerUI from "./MarketAnswer.presenter";
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   UPDATE_USED_ITEM_QUESTION_ANSWER,
@@ -15,8 +15,10 @@ export default function MarketCommentAnswer(props) {
   const [updateUseditemQuestionAnswer] = useMutation(
     UPDATE_USED_ITEM_QUESTION_ANSWER
   );
+
   const [contents, setContents] = useState(props.el?.contents || "");
   const [isValid, setIsValid] = useState(false);
+
   const onChangeContents = (event) => {
     if (event.target.value === "") {
       setIsValid(false);
@@ -26,6 +28,7 @@ export default function MarketCommentAnswer(props) {
     }
   };
 
+  // 📌 답글 등록하기
   const submitAnswer = async () => {
     try {
       await createUseditemQuestionAnswer({
@@ -49,6 +52,7 @@ export default function MarketCommentAnswer(props) {
     }
   };
 
+  // 📌 답글 수정하기
   const updateAnswer = async () => {
     try {
       await updateUseditemQuestionAnswer({
