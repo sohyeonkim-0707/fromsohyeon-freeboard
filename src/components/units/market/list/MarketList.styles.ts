@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  height: 180px;
-  border-bottom: 1px solid #bdbdbd;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 1200px;
+  height: 180px;
   margin: 0 auto;
+  border-bottom: 1px solid #bdbdbd;
 `;
 
 export const ProductImage = styled.img`
@@ -20,18 +20,18 @@ export const ProductImage = styled.img`
 export const ProductWrapper = styled.div`
   width: 860px;
   height: 160px;
-  /* border: 1px solid blue; */
   padding-left: 10px;
+  /* border: 1px solid blue; */
 `;
 
 export const Price = styled.div`
   width: 160px;
   height: 160px;
+  background: #ffe004;
   font-weight: 700;
   font-size: 20px;
   text-align: center;
   line-height: 160px;
-  background: #ffe004;
 `;
 
 export const name = styled.div`
@@ -41,16 +41,16 @@ export const name = styled.div`
   cursor: pointer;
 `;
 export const remarks = styled.div`
+  margin: 4px 0px;
   font-weight: 500;
   font-size: 16px;
   color: #4f4f4f;
-  margin: 4px 0px;
 `;
 export const tag = styled.div`
+  margin: 10px 0px;
   font-weight: 500;
   font-size: 16px;
   color: #bdbdbd;
-  margin: 10px 0px;
 `;
 
 export const SellerGood = styled.div`
@@ -59,10 +59,10 @@ export const SellerGood = styled.div`
   margin-top: 20px;
 `;
 export const seller = styled.div`
+  margin-right: 10px;
   font-weight: 500;
   font-size: 16px;
   color: #4f4f4f;
-  margin-right: 10px;
 `;
 export const Likebutton = styled.div`
   font-weight: 500;
@@ -70,7 +70,7 @@ export const Likebutton = styled.div`
   color: #4f4f4f;
 `;
 export const Scroll = styled.div`
-  height: 800px;
   width: 1300px;
+  height: 800px;
   overflow: auto;
 `;

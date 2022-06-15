@@ -2,20 +2,20 @@ import styled from "@emotion/styled";
 import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
-  width: 1100px;
   display: flex;
   flex-direction: column;
+  width: 1100px;
   margin-top: 10px;
   /* margin-left:40px;z */
   padding: 0px 100px;
 `;
 // 리스트 부분
 export const CommentFetchWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid gray;
+  width: 100%;
   margin-top: 10px;
+  border-bottom: 1px solid gray;
 `;
 
 export const CommentProfileImg = styled.img`
@@ -62,10 +62,10 @@ export const EditIcon = styled(EditOutlined)`
 `;
 
 export const UpdateIconButton = styled.button`
-  border: none;
-  background-color: white;
-  cursor: pointer;
   margin-right: 10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 `;
 
 // export const DeleteIcon = styled.img``;
@@ -77,7 +77,7 @@ export const DeleteIcon = styled(CloseOutlined)`
 `;
 
 export const DeleteIconButton = styled.button`
-  border: none;
   background-color: white;
+  border: none;
   cursor: pointer;
 `;

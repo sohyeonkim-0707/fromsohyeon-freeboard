@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
 `;
 
 export const TableTop = styled.div`
-  border-top: 1px solid gray;
   margin-top: 20px;
+  border-top: 1px solid gray;
 `;
 
 export const TableBottom = styled.div`
@@ -20,9 +20,8 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   height: 52px;
-  line-height: 52px;
   border-bottom: 1px solid gray;
-
+  line-height: 52px;
   :hover {
     background: orange;
   }
@@ -47,10 +46,6 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
-
-  :hover {
-    /* font-weight: bold; */
-  }
 `;
 
 export const Footer = styled.div`
@@ -66,18 +61,17 @@ export const BoardNewIcon = styled(FormOutlined)`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   width: 171px;
   height: 45px;
   background-color: #dcdcdc;
   border-radius: 10px;
   border: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
   cursor: pointer;
   text-align: center;
-
   :hover {
     color: white;
   }

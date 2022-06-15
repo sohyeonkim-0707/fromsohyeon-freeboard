@@ -4,12 +4,10 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   height: 200px;
+  margin-top: 150px;
   background-color: lightgray;
-  margin-top:150px;
-  text-align:center;
-  line-height:200px;
-  
-  }
+  text-align: center;
+  line-height: 200px;
 `;
 
 export default function LayoutFooter() {

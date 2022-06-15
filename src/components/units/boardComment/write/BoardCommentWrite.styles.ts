@@ -26,9 +26,9 @@ export const ContentsWrapper = styled.div`
 export const Input = styled.input`
   width: 180px;
   height: 52px;
+  margin-right: 20px;
   padding-left: 20px;
   border: 1px solid lightgray;
-  margin-right: 20px;
 `;
 
 export const Contents = styled.textarea`
@@ -48,8 +48,8 @@ export const BottomWrapper = styled.div`
 export const ContentsLength = styled.div`
   width: 100%;
   height: 51px;
-  line-height: 51px;
   padding-left: 20px;
+  line-height: 51px;
   color: gray;
 `;
 

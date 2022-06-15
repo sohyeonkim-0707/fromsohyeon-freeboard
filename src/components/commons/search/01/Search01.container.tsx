@@ -4,24 +4,24 @@ import _ from "lodash";
 import styled from "@emotion/styled";
 
 const Searchbar = styled.div`
-  width: 600px;
-  height: 45px;
-  border-radius: 10px;
-  background: #dcdcdc;
   display: flex;
+  display: block;
   flex-direction: row;
   align-items: center;
+  width: 600px;
+  height: 45px;
   margin: 0 auto;
-  display: block;
+  background: #dcdcdc;
+  border-radius: 10px;
 `;
 
 const SearchbarInput = styled.input`
   width: 100%;
   height: 100%;
+  margin: 0px 20px;
+  background: none;
   border: none;
   outline: none;
-  background: none;
-  margin: 0px 20px;
 `;
 
 export default function Search01(props: ISearchbars01Props) {

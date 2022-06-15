@@ -4,9 +4,9 @@ import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 export const ItemWrapper = styled.div`
   width: 1200px;
+  height: 128px;
   margin: 0px 100px;
   padding-top: 20px;
-  height: 128px;
   border-bottom: 1px solid lightgray;
 `;
 
@@ -35,7 +35,7 @@ export const Writer = styled.div`
   margin-right: 20px;
 `;
 
-// 별 위치 자유자재여
+// 별 위치 자유자재
 export const Star = styled(Rate)`
   margin-left: 20px;
 `;
@@ -60,9 +60,9 @@ export const DeleteIcon = styled(CloseOutlined)`
 `;
 
 export const DateString = styled.div`
-  color: lightgray;
   padding-top: 15px;
   padding-left: 60px;
+  color: lightgray;
 `;
 
 export const PasswordInput = styled.input`

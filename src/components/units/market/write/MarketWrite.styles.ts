@@ -6,20 +6,20 @@ import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  /* height: 1847px; */
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 100px;
+  margin: 80px auto;
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
   padding-right: 102px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 1200px;
+  /* height: 1847px; */
+  border: 1px solid black;
   border: none;
   box-shadow: 0px 0px 10px gray;
-  margin: 80px auto;
 `;
 
 export const MainTitle = styled.div`
@@ -64,20 +64,20 @@ export const Error = styled.div`
 `;
 
 export const MapWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 996px;
   height: 300px;
   /* border: 1px solid blue; */
   margin-top: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 export const Label = styled.div`
   padding-bottom: 16px;
+  margin-top: 10px;
   font-size: 16px;
   font-weight: 500;
-  margin-top: 10px;
 `;
 
 export const PhotoWrapper = styled.div`
@@ -90,10 +90,10 @@ export const MapImage = styled.div`
   height: 100%;
 `;
 export const Location = styled.div`
+  height: 48px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  height: 48px;
   line-height: 48px;
 `;
 
@@ -116,25 +116,23 @@ export const GpasWrapper = styled.div`
 `;
 
 export const GpsTitle = styled.div`
+  height: 48px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  height: 48px;
   line-height: 48px;
 `;
 
 export const GpsInput = styled.div`
   display: flex;
   flex-direction: row;
-
   input {
     width: 108px;
     height: 52px;
-    border: 1px solid #bdbdbd;
     margin-right: 20px;
+    border: 1px solid #bdbdbd;
     outline: none;
   }
-
   div {
     margin-right: 20px;
   }
@@ -149,18 +147,18 @@ export const AddressWrapper = styled.div`
 `;
 
 export const AddressTitle = styled.div`
+  height: 48px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  height: 48px;
   line-height: 48px;
 `;
 
 export const AddressInput = styled.input`
   width: 588px;
   height: 52px;
-  border: 1px solid #bdbdbd;
   margin-top: 10px;
+  border: 1px solid #bdbdbd;
   outline: none;
 `;
 
@@ -181,13 +179,13 @@ export const RadioLabel = styled.label`
 `;
 
 export const EnrolledButton = styled.button`
+  display: block;
   width: 179px;
   height: 52px;
+  margin: 70px auto;
   /* background: #bdbdbd; */
   background: ${(props: IEnrolledButton) =>
     props.isActive ? "yellow" : "#bdbdbd"};
   border: none;
-  margin: 70px auto;
-  display: block;
   cursor: pointer;
 `;

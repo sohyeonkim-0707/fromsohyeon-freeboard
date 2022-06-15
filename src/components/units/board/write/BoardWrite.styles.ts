@@ -3,17 +3,17 @@ import { ISubmitButtonProps } from "./BoardWrite.types";
 
 // 높이 지정 하지마
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 1200px;
   /* height: 1847px; */
-  border: 1px solid black;
   margin: 100px auto;
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
   padding-right: 102px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 1px solid black;
   border: none;
   box-shadow: 0px 0px 10px gray;
 `;
@@ -25,11 +25,11 @@ export const Title = styled.div`
 `;
 
 export const WriterWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-top: 40px;
+  width: 100%;
 `;
 
 export const Writer = styled.input`
@@ -148,27 +148,26 @@ export const ButtonWrapper = styled.div`
 export const CancelButton = styled.button`
   width: 179px;
   height: 52px;
+  margin-left: 12px;
+  margin-right: 12px;
   background-color: #bdbdbd;
   border: none;
   font-size: 16px;
   font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
   cursor: pointer;
 `;
 
 export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
+  margin-left: 12px;
+  margin-right: 12px;
+  background-color: ${(props: ISubmitButtonProps) =>
+    props.isActive ? "#FFD600" : "none"};
   border: none;
   font-size: 16px;
   font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
   cursor: pointer;
-
-  background-color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "#FFD600" : "none"};
 `;
 
 export const Error = styled.div`

@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 const Wrapper = styled.div`
   height: 50px;
   background-color: black;
-  }
 `;
 
 const InnerWrapper = styled.div`
@@ -18,14 +17,14 @@ const InnerWrapper = styled.div`
 const InnerButton = styled.button`
   width: 70px;
   height: 30px;
-  line-height: 30px;
-  text-align: center;
   margin-right: 20px;
   margin-top: 10px;
   background-color: black;
+  border: none;
+  line-height: 30px;
+  text-align: center;
   color: white;
   outline: none;
-  border: none;
   cursor: pointer;
 `;
 
