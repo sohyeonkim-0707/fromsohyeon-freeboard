@@ -1,7 +1,7 @@
 // 레이아웃 컴포넌트 합치는 곳
 import { ReactNode } from "react";
 import styled from "@emotion/styled";
-import Header from "./header/Header.container";
+import Navigation from "./header/Header.container";
 import Footer from "./footer/Footer.container";
 
 const Body = styled.div`
@@ -16,7 +16,7 @@ interface ILayoutProps {
 export default function Layout(props: ILayoutProps) {
   return (
     <>
-      <Header />
+      <Navigation />
       <Body>{props.children}</Body>
       <Footer />
     </>
